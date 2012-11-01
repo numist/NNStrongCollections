@@ -1,24 +1,62 @@
 require 'fileutils'
 
+require 'src/build/collectionparser'
+CollectionParser.source = 'src'
+
 # What does rake/clean clean/clobber by default?
 require 'rake/clean'
 CLEAN.include('**/*.temp')
 CLEAN.include('build')
-# CLOBBER.include('passwd')
+CLOBBER.include('src/doxygen.config')
 
-IntermediateDirectory = 'build/intermediates'
+IntermediateDirectory = 'build/intermediate'
+DocumentationIntermediateDirectory = IntermediateDirectory + '/doc'
 
 task :default => [:all]
+
+task :install => [:all] do
+  system("make -C build/DoxygenDocs.docset/html install")
+end
 
 task :all => [:build, :test, :docs] do
   FileUtils.rm_rf(IntermediateDirectory)
 end
 
 task :docs do
-  FileUtils.mkdir_p(IntermediateDirectory)
-  # build test headers for each collection type via string replacement
-    # -TODO: ruby lib to build working test headers and impls via string replacement
-  # build docset ( http://developer.apple.com/library/ios/#featuredarticles/DoxygenXcode/_index.html )
+  # check that doxygen is in the path or something
+  unless system('which doxygen &> /dev/null')
+    raise "doxygen could not be found"
+  end
+
+  FileUtils.mkdir_p(DocumentationIntermediateDirectory)
+
+  puts "generating headers"
+  CollectionParser.types.each {|x|
+    CollectionParser.new(x).writeHeader("NNWidget", "widget", "Widget", "s", DocumentationIntermediateDirectory)
+  }
+
+  # doxygen requires a default configuration file
+  if !File.exists?('src/doxygen.config')
+    puts "generating default doxygen configuration"
+    system('doxygen -g src/doxygen.config')
+  end
+
+  puts "configuring doxygen"
+  config = IO.read('src/doxygen.config')
+  config << <<-EOS
+    INPUT = #{DocumentationIntermediateDirectory}
+    OUTPUT_DIRECTORY = build/DoxygenDocs.docset
+    GENERATE_DOCSET        = YES
+    DOCSET_BUNDLE_ID       = net.numist.NNStrongCollections
+  EOS
+
+  configFile = DocumentationIntermediateDirectory+'/doxygen.config'
+  open(configFile, 'w') do |f|
+    f << config
+  end
+
+  puts "generating documentation"
+  system("doxygen #{configFile} > /dev/null")
 end
 
 task :test => [:build] do
