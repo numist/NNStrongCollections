@@ -15,7 +15,22 @@ DocumentationIntermediateDirectory = IntermediateDirectory + '/doc'
 task :default => [:all]
 
 task :install => [:all] do
-  system("make -C build/DoxygenDocs.docset/html install")
+  puts "installing docset"
+  system("make -C build/NNStrongCollections.docset/html install > /dev/null")
+
+  puts <<-EOS
+
+##########################
+# Installation complete! #
+##########################
+
+To tell Xcode to load the docset:
+
+tell application "Xcode"
+  load documentation set with path "/Users/#{`whoami`.strip! || `whoami`}/Library/Developer/Shared/Documentation/DocSets/"
+end tell
+
+  EOS
 end
 
 task :all => [:build, :test, :docs] do
@@ -45,7 +60,7 @@ task :docs do
   config = IO.read('src/doxygen.config')
   config << <<-EOS
     INPUT = #{DocumentationIntermediateDirectory}
-    OUTPUT_DIRECTORY = build/DoxygenDocs.docset
+    OUTPUT_DIRECTORY = build/NNStrongCollections.docset
     GENERATE_DOCSET        = YES
     DOCSET_BUNDLE_ID       = net.numist.NNStrongCollections
   EOS
