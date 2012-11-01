@@ -9,31 +9,21 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@implementation NNMutable##_Uname_##Array
+@class NNMutable##_Uname_##Array;
 
-- (void)add##_Uname_:(_class_ *)some##_Uname_;
-{
+@interface NN##_Uname_##Array (NN##_Uname_##ArrayCreation)
++ (NN##_Uname_##Array *)strongArrayWith##_Uname_:(_class_ *)some##_Uname_;
++ (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
++ (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
++ (NN##_Uname_##Array *)strongArrayWithArray:(NSArray *)array;
+- (NNMutable##_Uname_##Array *)strongMutableCopy;
+- (id)initWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
+- (id)initWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initWithArray:(NSArray *)array;
+- (id)initWithArray:(NSArray *)array copyItems:(BOOL)flag;
 
-}
-
-- (void)insert##_Uname_:(_class_ *)some##_Uname_## atIndex:(NSUInteger)index;
-{
-
-}
-
-- (void)removeLast##_Uname_;
-{
-
-}
-
-- (void)remove##_Uname_##AtIndex:(NSUInteger)index;
-{
-
-}
-
-- (void)replace##_Uname_##AtIndex:(NSUInteger)index with##_Uname_:(_class_ *)some##_Uname_;
-{
-
-}
-
++ (id)arrayWithContentsOfFile:(NSString *)path __attribute__ ((deprecated));
++ (id)arrayWithContentsOfURL:(NSURL *)url __attribute__ ((deprecated));
+- (id)initWithContentsOfFile:(NSString *)path __attribute__ ((deprecated));
+- (id)initWithContentsOfURL:(NSURL *)url __attribute__ ((deprecated));
 @end

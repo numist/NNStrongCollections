@@ -9,31 +9,6 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@implementation NNMutable##_Uname_##Array
-
-- (void)add##_Uname_:(_class_ *)some##_Uname_;
-{
-
-}
-
-- (void)insert##_Uname_:(_class_ *)some##_Uname_## atIndex:(NSUInteger)index;
-{
-
-}
-
-- (void)removeLast##_Uname_;
-{
-
-}
-
-- (void)remove##_Uname_##AtIndex:(NSUInteger)index;
-{
-
-}
-
-- (void)replace##_Uname_##AtIndex:(NSUInteger)index with##_Uname_:(_class_ *)some##_Uname_;
-{
-
-}
-
+@interface NN##_Uname_##Array (NN##_Uname_##ArrayDebugging)
+- (void)verify##_Uname_##_pluralSuffix_;
 @end

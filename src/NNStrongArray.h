@@ -9,31 +9,15 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@implementation NNMutable##_Uname_##Array
+@interface NN##_Uname_##Array : NSArray
 
-- (void)add##_Uname_:(_class_ *)some##_Uname_;
-{
+/**
+ Returns the _lname_ located at index.
 
-}
-
-- (void)insert##_Uname_:(_class_ *)some##_Uname_## atIndex:(NSUInteger)index;
-{
-
-}
-
-- (void)removeLast##_Uname_;
-{
-
-}
-
-- (void)remove##_Uname_##AtIndex:(NSUInteger)index;
-{
-
-}
-
-- (void)replace##_Uname_##AtIndex:(NSUInteger)index with##_Uname_:(_class_ *)some##_Uname_;
-{
-
-}
+ @param index An index within the bounds of the array.
+ @return The _lname_ located at index.
+ @discussion If index is beyond the end of the array (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+ */
+- (_class_ *)_lname_##AtIndex:(NSUInteger)index;
 
 @end
