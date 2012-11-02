@@ -31,11 +31,6 @@
 
 }
 
-- (NNMutable##_Uname_##Array *)strongMutableCopy;
-{
-
-}
-
 - (id)initWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
 {
 

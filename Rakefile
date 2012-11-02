@@ -15,22 +15,9 @@ DocumentationIntermediateDirectory = IntermediateDirectory + '/doc'
 task :default => [:all]
 
 task :install => [:all] do
-  puts "installing docset"
-  system("make -C build/NNStrongCollections.docset/html install > /dev/null")
-
-  puts <<-EOS
-
-##########################
-# Installation complete! #
-##########################
-
-To tell Xcode to load the docset:
-
-tell application "Xcode"
-  load documentation set with path "/Users/#{`whoami`.strip! || `whoami`}/Library/Developer/Shared/Documentation/DocSets/"
-end tell
-
-  EOS
+  ## Do not install docset for a class that only exists in OUR BRAINS
+  # puts "installing docset"
+  # system("make -C build/NNStrongCollections.docset/html install > /dev/null")
 end
 
 task :all => [:build, :test, :docs] do

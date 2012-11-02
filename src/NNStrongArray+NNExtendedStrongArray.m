@@ -31,7 +31,7 @@
 
 }
 
-- (void)get##_Uname_##_pluralSuffix_:(id __unsafe_unretained [])_lname_##_pluralSuffix_## range:(NSRange)range;
+- (void)get##_Uname_##_pluralSuffix_:(id __unsafe_unretained [])_lname_##_pluralSuffix_ range:(NSRange)range;
 {
 
 }
@@ -41,7 +41,7 @@
 
 }
 
-- (NSUInteger)indexOf##_Uname_:(_class_ *)some##_Uname_## inRange:(NSRange)range;
+- (NSUInteger)indexOf##_Uname_:(_class_ *)some##_Uname_ inRange:(NSRange)range;
 {
 
 }
@@ -51,7 +51,7 @@
 
 }
 
-- (NSUInteger)indexOf##_Uname_##IdenticalTo:(_class_ *)some##_Uname_## inRange:(NSRange)range;
+- (NSUInteger)indexOf##_Uname_##IdenticalTo:(_class_ *)some##_Uname_ inRange:(NSRange)range;
 {
 
 }
@@ -76,7 +76,7 @@
 
 }
 
-- (void)make##_Uname_##_pluralSuffix_##PerformSelector:(SEL)aSelector with##_Uname_:(_class_ *)argument;
+- (void)make##_Uname_##_pluralSuffix_##PerformSelector:(SEL)aSelector withObject:(id)argument;
 {
 
 }
@@ -86,57 +86,57 @@
 
 }
 
-- (_class_ *)_lname_##AtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
+- (_class_ *)_lname_##AtIndexedSubscript:(NSUInteger)idx;
 {
 
 }
 
-- (void)enumerate##_Uname_##_pluralSuffix_##UsingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block NS_AVAILABLE(10_6, 4_0);
+- (void)enumerate##_Uname_##_pluralSuffix_##UsingBlock:(void (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))block;
 {
 
 }
 
-- (void)enumerate##_Uname_##_pluralSuffix_##WithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block NS_AVAILABLE(10_6, 4_0);
+- (void)enumerate##_Uname_##_pluralSuffix_##WithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))block;
 {
 
 }
 
-- (void)enumerate##_Uname_##_pluralSuffix_##AtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts usingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block NS_AVAILABLE(10_6, 4_0);
+- (void)enumerate##_Uname_##_pluralSuffix_##AtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts usingBlock:(void (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))block;
 {
 
 }
 
-- (NSUInteger)indexOf##_Uname_##PassingTest:(BOOL (^)(id obj, NSUInteger idx, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
+- (NSUInteger)indexOf##_Uname_##PassingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
 {
 
 }
 
-- (NSUInteger)indexOf##_Uname_##WithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(id obj, NSUInteger idx, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
+- (NSUInteger)indexOf##_Uname_##WithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
 {
 
 }
 
-- (NSUInteger)indexOf##_Uname_##AtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(id obj, NSUInteger idx, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
+- (NSUInteger)indexOf##_Uname_##AtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
 {
 
 }
 
-- (NSIndexSet *)indexesOf##_Uname_##_pluralSuffix_##PassingTest:(BOOL (^)(id obj, NSUInteger idx, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
+- (NSIndexSet *)indexesOf##_Uname_##_pluralSuffix_##PassingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
 {
 
 }
 
-- (NSIndexSet *)indexesOf##_Uname_##_pluralSuffix_##WithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(id obj, NSUInteger idx, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
+- (NSIndexSet *)indexesOf##_Uname_##_pluralSuffix_##WithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
 {
 
 }
 
-- (NSIndexSet *)indexesOf##_Uname_##_pluralSuffix_##AtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(id obj, NSUInteger idx, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
+- (NSIndexSet *)indexesOf##_Uname_##_pluralSuffix_##AtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
 {
 
 }
 
-- (NSUInteger)indexOf##_Uname_:(_class_ *)obj inSortedRange:(NSRange)r options:(NSBinarySearchingOptions)opts usingComparator:(NSComparator)cmp NS_AVAILABLE(10_6, 4_0);
+- (NSUInteger)indexOf##_Uname_:(_class_ *)some##_Uname_ inSortedRange:(NSRange)r options:(NSBinarySearchingOptions)opts usingComparator:(NSComparator)cmp;
 {
 
 }

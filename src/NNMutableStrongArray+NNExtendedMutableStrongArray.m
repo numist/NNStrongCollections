@@ -26,7 +26,7 @@
 
 }
 
-- (void)remove##_Uname_:(_class_ *)some##_Uname_## inRange:(NSRange)range;
+- (void)remove##_Uname_:(_class_ *)some##_Uname_ inRange:(NSRange)range;
 {
 
 }
@@ -36,17 +36,12 @@
 
 }
 
-- (void)remove##_Uname_##IdenticalTo:(_class_ *)some##_Uname_## inRange:(NSRange)range;
+- (void)remove##_Uname_##IdenticalTo:(_class_ *)some##_Uname_ inRange:(NSRange)range;
 {
 
 }
 
 - (void)remove##_Uname_##IdenticalTo:(_class_ *)some##_Uname_;
-{
-
-}
-
-- (void)remove##_Uname_##_pluralSuffix_##FromIndices:(NSUInteger *)indices numIndices:(NSUInteger)cnt NS_DEPRECATED(10_0, 10_6, 2_0, 4_0);
 {
 
 }
@@ -71,17 +66,12 @@
 
 }
 
-- (void)setArray:(NSArray *)otherArray;
-{
-
-}
-
 - (void)sortUsing##_Uname_##Function:(NSInteger (*)(_class_ *, _class_ *, void *))compare context:(void *)context;
 {
 
 }
 
-- (void)insert##_Uname_##_pluralSuffix_:(NSArray *)_lname_##_pluralSuffix_## atIndexes:(NSIndexSet *)indexes;
+- (void)insert##_Uname_##_pluralSuffix_:(NSArray *)_lname_##_pluralSuffix_ atIndexes:(NSIndexSet *)indexes;
 {
 
 }
@@ -96,7 +86,7 @@
 
 }
 
-- (void)set##_Uname_:(_class_ *)obj atIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
+- (void)set##_Uname_:(_class_ *)some##_Uname_ atIndexedSubscript:(NSUInteger)idx;
 {
 
 }
