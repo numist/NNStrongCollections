@@ -13,67 +13,88 @@
 
 + (NN##_Uname_##Array *)strongArrayWith##_Uname_:(_class_ *)some##_Uname_;
 {
-
+    // TODO:
+    return nil;
 }
 
-+ (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
++ (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
 {
-
+    // TODO:
+    return nil;
 }
 
-+ (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
++ (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ...;
 {
-
+    // TODO:
+    return nil;
 }
 
 + (NN##_Uname_##Array *)strongArrayWithArray:(NSArray *)array;
 {
-
+    // TODO:
+    return nil;
 }
 
-- (id)initWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
+- (id)initWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
 {
-
+    return [self initWithObjects:_lname_##_pluralSuffix_ count:cnt];
 }
 
-- (id)initWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ...;
 {
-
+    // TODO:
+    return nil;
 }
 
 - (id)initWithArray:(NSArray *)array;
 {
+    for (id obj in array) {
+        if (![obj isKindOfClass:[_class_ class]]) {
+            @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayInvalidTypeException"
+                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
+                                         userInfo:nil];
+        }
+    }
 
+    return [self initWithArray:array];
 }
 
 - (id)initWithArray:(NSArray *)array copyItems:(BOOL)flag;
 {
+    for (id obj in array) {
+        if (![obj isKindOfClass:[_class_ class]]) {
+            @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayInvalidTypeException"
+                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
+                                         userInfo:nil];
+        }
+    }
 
+    return [self initWithArray:array copyItems:flag];
 }
 
 
-+ (id)arrayWithContentsOfFile:(NSString *)path __attribute__ ((deprecated));
++ (id)arrayWithContentsOfFile:(NSString *)path;
 {
     @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayDeprecatedMethodException"
                                    reason:[NSString stringWithFormat:@"Selector %@ is not supported by NN##_Uname_##Arrays", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
 
-+ (id)arrayWithContentsOfURL:(NSURL *)url __attribute__ ((deprecated));
++ (id)arrayWithContentsOfURL:(NSURL *)url;
 {
     @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayDeprecatedMethodException"
                                    reason:[NSString stringWithFormat:@"Selector %@ is not supported by NN##_Uname_##Arrays", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
 
-- (id)initWithContentsOfFile:(NSString *)path __attribute__ ((deprecated));
+- (id)initWithContentsOfFile:(NSString *)path;
 {
     @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayDeprecatedMethodException"
                                    reason:[NSString stringWithFormat:@"Selector %@ is not supported by NN##_Uname_##Arrays", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
 
-- (id)initWithContentsOfURL:(NSURL *)url __attribute__ ((deprecated));
+- (id)initWithContentsOfURL:(NSURL *)url;
 {
     @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayDeprecatedMethodException"
                                    reason:[NSString stringWithFormat:@"Selector %@ is not supported by NN##_Uname_##Arrays", NSStringFromSelector(_cmd)]

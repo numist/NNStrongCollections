@@ -22,7 +22,7 @@ The NNMutable##_Uname_##Array class declares the programmatic interface to objec
 /**
  Creates and returns an array that includes a given number of _lname_##_pluralSuffix_ from a given C array.
 
-     + (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt
+     + (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt
 
  @param _lname_##_pluralSuffix_ A C array of _lname_##_pluralSuffix_.
  @param count The number of values from the _lname_##_pluralSuffix_ C array to include in the new array. This number will be the count of the new array—it must not be negative or greater than the number of elements in _lname_##_pluralSuffix_.
@@ -32,7 +32,7 @@ The NNMutable##_Uname_##Array class declares the programmatic interface to objec
  @see NSArray#arrayWithObjects:count:
  @see get##_Uname_##_pluralSuffix_:range:
  */
-+ (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
++ (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
 
 /**
  Creates and returns an array containing the _lname_##_pluralSuffix_ in the argument list.
@@ -77,7 +77,7 @@ The NNMutable##_Uname_##Array class declares the programmatic interface to objec
  @param initWith##_Uname_##_pluralSuffix_:
  @param strongArrayWith##_Uname_##_pluralSuffix_:
  */
-- (id)initWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
+- (id)initWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
 
 /**
  Initializes a newly allocated array by placing in it the _lname_##_pluralSuffix_ in the argument list.

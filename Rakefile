@@ -110,7 +110,7 @@ task :lint do
     sh "#{CC} -I#{IntermediateDirectory} #{LIBS} #{CFLAGS} -dynamiclib -o #{impl}.o #{impl}"
 
     # analyze
-    sh "#{CC} -I#{IntermediateDirectory} --analyze #{CFLAGS} -dynamiclib -o #{impl}.o #{impl}"
+    sh "#{CC} -I#{IntermediateDirectory} --analyze #{CFLAGS} -o #{impl}.o #{impl}"
   end
 
   # build one set of test files via string replacement

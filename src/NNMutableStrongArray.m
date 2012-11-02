@@ -13,27 +13,27 @@
 
 - (void)add##_Uname_:(_class_ *)some##_Uname_;
 {
-
+    [self addObject:some##_Uname_];
 }
 
-- (void)insert##_Uname_:(_class_ *)some##_Uname_## atIndex:(NSUInteger)index;
+- (void)insert##_Uname_:(_class_ *)some##_Uname_ atIndex:(NSUInteger)index;
 {
-
+    [self insertObject:some##_Uname_ atIndex:index];
 }
 
 - (void)removeLast##_Uname_;
 {
-
+    [self removeLastObject];
 }
 
 - (void)remove##_Uname_##AtIndex:(NSUInteger)index;
 {
-
+    [self removeObjectAtIndex:index];
 }
 
 - (void)replace##_Uname_##AtIndex:(NSUInteger)index with##_Uname_:(_class_ *)some##_Uname_;
 {
-
+    [self replaceObjectAtIndex:index withObject:some##_Uname_];
 }
 
 @end

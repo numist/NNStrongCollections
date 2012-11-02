@@ -1,6 +1,6 @@
 /**
  */
-@interface NNMutable##_Uname_##Array : NN##_Uname_##Array
+@interface NNMutable##_Uname_##Array : NSMutableArray
 
 /**
  Inserts a given _lname_ at the end of the array.
@@ -25,7 +25,7 @@
  @see NSMutableArray#insertObject:atIndex:
  @see remove##_Uname_##AtIndex:
  */
-- (void)insert##_Uname_:(_class_ *)some##_Uname_## atIndex:(NSUInteger)index;
+- (void)insert##_Uname_:(_class_ *)some##_Uname_ atIndex:(NSUInteger)index;
 
 /**
  Removes the _lname_ with the highest-valued index in the array

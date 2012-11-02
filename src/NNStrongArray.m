@@ -13,7 +13,7 @@
 
 - (_class_ *)_lname_##AtIndex:(NSUInteger)index;
 {
-
+    return (_class_ *)[self objectAtIndex:index];
 }
 
 @end
