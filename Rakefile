@@ -49,9 +49,8 @@ task :docs do
 
   FileUtils.mkdir_p(DocumentationIntermediateDirectory)
 
-  puts "generating headers"
   CollectionParser.types.each {|x|
-    CollectionParser.new(x).writeHeader("NNWidget", "widget", "Widget", "s", DocumentationIntermediateDirectory)
+    puts "generating "+CollectionParser.new(x).writeHeader("NNWidget", "widget", "Widget", "s", DocumentationIntermediateDirectory)
   }
 
   # doxygen requires a default configuration file
@@ -60,7 +59,7 @@ task :docs do
     sh 'doxygen -g src/doxygen.config > /dev/null'
   end
 
-  puts "configuring doxygen"
+  puts "generating documentation"
   config = IO.read('src/doxygen.config')
   config << <<-EOS
     INPUT = .
@@ -73,8 +72,6 @@ task :docs do
   open(configFile, 'w') do |f|
     f << config
   end
-
-  puts "generating documentation"
 
   cd DocumentationIntermediateDirectory do
     sh "doxygen doxygen.config &> doxygen.log"
@@ -93,8 +90,9 @@ task :test => [:build] do
   plural = "s"
   CollectionParser.types.each do |x|
     parser = CollectionParser.new(x)
-    header = parser.writeHeader(classname, lname, uname, plural, TestIntermediateDirectory)
+    parser.writeHeader(classname, lname, uname, plural, TestIntermediateDirectory)
     impl = parser.writeImplementation(classname, lname, uname, plural, TestIntermediateDirectory)
+    sh "#{CC} -I#{TestIntermediateDirectory} #{LIBS} #{CFLAGS} -dynamiclib -o #{impl.ext(".a")} #{impl}"
 
     # ruby "src/build/tests.rb"?
   end
@@ -112,9 +110,14 @@ end
 task :build => [:lint] do
   puts "[build]"
   FileUtils.mkdir_p(BuildIntermediateDirectory)
-  # strip comments from all .m and .h -- for now only worry about comments matching trim ^//… and block comments matching trim /* … */.
-  # combine same-type files starting with NN — NNStrongArray NNMutableStrongArray into string blob
-  # strip newlines
+
+  CollectionParser.types.each do |x|
+    filename = BuildIntermediateDirectory+'/NN'+x+'.h'
+    puts "generating #{filename}"
+    open(filename, 'w') do |f|
+      f << CollectionParser.new(x).macroBlob
+    end
+  end
   # create NNStrongCollections.h by injecting macros.h into template.h and replacing _NNMacroDefinitionForType with Type's blob (Type eg: StrongArray)
 end
 
@@ -129,14 +132,14 @@ task :lint do
 
   CollectionParser.types.each do |x|
     parser = CollectionParser.new(x)
-    header = parser.writeHeader(classname, lname, uname, plural, LintIntermediateDirectory)
+    parser.writeHeader(classname, lname, uname, plural, LintIntermediateDirectory)
     impl = parser.writeImplementation(classname, lname, uname, plural, LintIntermediateDirectory)
 
     # build
-    sh "#{CC} -I#{LintIntermediateDirectory} #{LIBS} #{CFLAGS} -dynamiclib -o #{impl}.o #{impl}"
+    sh "#{CC} -I#{LintIntermediateDirectory} #{LIBS} #{CFLAGS} -dynamiclib -o #{impl.ext(".a")} #{impl}"
 
     # analyze
-    sh "#{CC} -I#{LintIntermediateDirectory} --analyze #{CFLAGS} -o #{impl}.o #{impl}"
+    sh "#{CC} -I#{LintIntermediateDirectory} --analyze #{CFLAGS} -o #{impl.ext(".a")} #{impl}"
   end
 
   # build one set of test files via string replacement

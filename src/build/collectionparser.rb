@@ -101,6 +101,15 @@ class CollectionParser
   end
 
   def macroBlob
-    
+    result = IO.read(@@source+'/NN'+@collectionType+'.h')
+    Dir[@@source+'/NN'+@collectionType+'*+*.h'].each do |header|
+      result << IO.read(header)
+    end
+    result << IO.read(@@source+'/NN'+@collectionType+'.m')
+    Dir[@@source+'/NN'+@collectionType+'*+*.m'].each do |impl|
+      result << IO.read(impl)
+    end
+
+    result = result.gsub(/[\s]*\/\/.*$/, '').gsub(/\/\*[\*]*.*?\*\//m, '').gsub(/[\s]+/m, ' ')
   end
 end
