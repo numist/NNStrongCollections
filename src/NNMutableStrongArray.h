@@ -1,4 +1,5 @@
 /**
+The NNMutable##_Uname_##Array class declares the programmatic interface to objects that manage a modifiable array of _lname_##_pluralSuffix_. This class adds insertion and deletion operations to the basic array-handling behavior found in NN##_Uname_##Array.
  */
 @interface NNMutable##_Uname_##Array : NSMutableArray
 

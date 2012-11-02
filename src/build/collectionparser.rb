@@ -9,9 +9,9 @@ class CollectionParser
   def collectionType; @collectionType end
 
   def self.types
-    files = Dir[@@source+'/NNStrong*.h']
-    files.delete_if {|x| x['+'] }
-    files.collect {|x| /\/NNStrong(.*)\.h/.match(x)[1] }
+    files = Dir[@@source+'/NN*.h']
+    files.delete_if {|x| x['+']}
+    files.collect {|x| /\/NN(.*)\.h/.match(x)[1]}
   end
 
   def initialize(theType)
@@ -23,8 +23,7 @@ class CollectionParser
   end
 
   def writeHeader(classname, lname, uname, pluralSuffix, path)
-    categories = Dir[@@source+'/NNStrong'+@collectionType+'*+*.h']
-    mutableCategories = Dir[@@source+'/NNMutableStrong'+@collectionType+'*+*.h']
+    categories = Dir[@@source+'/NN'+@collectionType+'*+*.h']
 
     result = <<-EOS
 //
@@ -42,18 +41,10 @@ class CollectionParser
 
     EOS
 
-    result << "\n//\n// "+@@source+'/NNStrong'+@collectionType+'.h'+"\n//\n\n"
-    result << IO.read(@@source+'/NNStrong'+@collectionType+'.h')+"\n"
+    result << "\n//\n// "+@@source+'/NN'+@collectionType+'.h'+"\n//\n\n"
+    result << IO.read(@@source+'/NN'+@collectionType+'.h')+"\n"
 
     categories.each do |header|
-      result << "\n//\n// "+header+"\n//\n\n"
-      result << IO.read(header)
-    end
-
-    result << "\n//\n// "+@@source+'/NNMutableStrong'+@collectionType+'.h'+"\n//\n\n"
-    result << IO.read(@@source+'/NNMutableStrong'+@collectionType+'.h')
-
-    mutableCategories.each do |header|
       result << "\n//\n// "+header+"\n//\n\n"
       result << IO.read(header)
     end
@@ -63,7 +54,7 @@ class CollectionParser
       result = result.gsub(/([#]{2})?#{token}([#]{2})?/, substitution[token])
     }
 
-    filename = path+'/NN'+uname+@collectionType+'.h'
+    filename = path+'/NN'+@collectionType.sub(/Strong/, uname)+'.h'
     open(filename, 'w') do |f|
       f << result
     end
@@ -71,8 +62,7 @@ class CollectionParser
   end
 
   def writeImplementation(classname, lname, uname, pluralSuffix, path)
-    categories = Dir[@@source+'/NNStrong'+@collectionType+'*+*.m']
-    mutableCategories = Dir[@@source+'/NNMutableStrong'+@collectionType+'*+*.m']
+    categories = Dir[@@source+'/NN'+@collectionType+'*+*.m']
 
     result = <<-EOS
 //
@@ -86,22 +76,14 @@ class CollectionParser
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "NN#{uname}#{@collectionType}.h"
+#import "NN#{@collectionType.sub(/Strong/, uname)}.h"
 
     EOS
 
-    result << "\n//\n// "+@@source+'/NNStrong'+@collectionType+'.m'+"\n//\n\n"
-    result << IO.read(@@source+'/NNStrong'+@collectionType+'.m')+"\n"
+    result << "\n//\n// "+@@source+'/NN'+@collectionType+'.m'+"\n//\n\n"
+    result << IO.read(@@source+'/NN'+@collectionType+'.m')+"\n"
 
     categories.each do |implementation|
-      result << "\n//\n// "+implementation+"\n//\n\n"
-      result << IO.read(implementation)
-    end
-
-    result << "\n//\n// "+@@source+'/NNMutableStrong'+@collectionType+'.m'+"\n//\n\n"
-    result << IO.read(@@source+'/NNMutableStrong'+@collectionType+'.m')
-
-    mutableCategories.each do |implementation|
       result << "\n//\n// "+implementation+"\n//\n\n"
       result << IO.read(implementation)
     end
@@ -111,7 +93,7 @@ class CollectionParser
       result = result.gsub(/([#]{2})?#{token}([#]{2})?/, substitution[token])
     }
 
-    filename = path+'/NN'+uname+@collectionType+'.m'
+    filename = path+'/NN'+@collectionType.sub(/Strong/, uname)+'.m'
     open(filename, 'w') do |f|
       f << result
     end

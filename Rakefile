@@ -8,9 +8,11 @@ require 'rake/clean'
 CLEAN.include('**/*.temp')
 CLEAN.include('build')
 CLOBBER.include('src/doxygen.config')
+CLOBBER.include('**/.DS_Store')
 
 IntermediateDirectory = 'build/intermediate'
-DocumentationIntermediateDirectory = IntermediateDirectory + '/doc'
+DocumentationIntermediateDirectory = IntermediateDirectory + '/docs'
+LintIntermediateDirectory = IntermediateDirectory + '/lint'
 
 CC  = 'clang'
 LD  = CC
@@ -58,8 +60,8 @@ task :docs do
   puts "configuring doxygen"
   config = IO.read('src/doxygen.config')
   config << <<-EOS
-    INPUT = #{DocumentationIntermediateDirectory}
-    OUTPUT_DIRECTORY = build/NNStrongCollections.docset
+    INPUT = .
+    OUTPUT_DIRECTORY = NNStrongCollections.docset
     GENERATE_DOCSET        = YES
     DOCSET_BUNDLE_ID       = net.numist.NNStrongCollections
   EOS
@@ -70,7 +72,11 @@ task :docs do
   end
 
   puts "generating documentation"
-  system("doxygen #{configFile} > /dev/null")
+
+  cd DocumentationIntermediateDirectory do
+    sh "doxygen doxygen.config &> doxygen.log"
+  end
+  FileUtils.cp_r(DocumentationIntermediateDirectory+"/NNStrongCollections.docset", "build/", :verbose => true)
 end
 
 task :test => [:build] do
@@ -94,7 +100,7 @@ task :build => [:lint] do
 end
 
 task :lint do
-  FileUtils.mkdir_p(IntermediateDirectory)
+  FileUtils.mkdir_p(LintIntermediateDirectory)
 
   classname = "NSString"
   lname = "string"
@@ -103,14 +109,14 @@ task :lint do
 
   CollectionParser.types.each do |x|
     parser = CollectionParser.new(x)
-    header = parser.writeHeader(classname, lname, uname, plural, IntermediateDirectory)
-    impl = parser.writeImplementation(classname, lname, uname, plural, IntermediateDirectory)
+    header = parser.writeHeader(classname, lname, uname, plural, LintIntermediateDirectory)
+    impl = parser.writeImplementation(classname, lname, uname, plural, LintIntermediateDirectory)
 
     # build
-    sh "#{CC} -I#{IntermediateDirectory} #{LIBS} #{CFLAGS} -dynamiclib -o #{impl}.o #{impl}"
+    sh "#{CC} -I#{LintIntermediateDirectory} #{LIBS} #{CFLAGS} -dynamiclib -o #{impl}.o #{impl}"
 
     # analyze
-    sh "#{CC} -I#{IntermediateDirectory} --analyze #{CFLAGS} -o #{impl}.o #{impl}"
+    sh "#{CC} -I#{LintIntermediateDirectory} --analyze #{CFLAGS} -o #{impl}.o #{impl}"
   end
 
   # build one set of test files via string replacement
