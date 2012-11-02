@@ -12,6 +12,18 @@ CLOBBER.include('src/doxygen.config')
 IntermediateDirectory = 'build/intermediate'
 DocumentationIntermediateDirectory = IntermediateDirectory + '/doc'
 
+CC  = 'clang'
+LD  = CC
+CFLAGS = [
+  '-std=c99',
+  '-fobjc-arc',
+  '-O0',
+  '-g',
+  '-Werror',
+  '-pedantic'
+].join(' ')
+LIBS = ['-framework Foundation'].join(' ')
+
 task :default => [:all]
 
 task :install => [:all] do
@@ -83,6 +95,24 @@ end
 
 task :lint do
   FileUtils.mkdir_p(IntermediateDirectory)
+
+  classname = "NSString"
+  lname = "string"
+  uname = "String"
+  plural = "s"
+
+  CollectionParser.types.each do |x|
+    parser = CollectionParser.new(x)
+    header = parser.writeHeader(classname, lname, uname, plural, IntermediateDirectory)
+    impl = parser.writeImplementation(classname, lname, uname, plural, IntermediateDirectory)
+
+    # build
+    sh "#{CC} -I#{IntermediateDirectory} #{LIBS} #{CFLAGS} -dynamiclib -o #{impl}.o #{impl}"
+
+    # analyze
+    sh "#{CC} -I#{IntermediateDirectory} --analyze #{CFLAGS} -dynamiclib -o #{impl}.o #{impl}"
+  end
+
   # build one set of test files via string replacement
     # -TODO: ruby lib to build working test headers and impls via string replacement
   # cpp lint test files
