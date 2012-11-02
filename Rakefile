@@ -11,6 +11,8 @@ CLOBBER.include('src/doxygen.config')
 CLOBBER.include('**/.DS_Store')
 
 IntermediateDirectory = 'build/intermediate'
+BuildIntermediateDirectory = IntermediateDirectory + '/macro'
+TestIntermediateDirectory = IntermediateDirectory + '/test'
 DocumentationIntermediateDirectory = IntermediateDirectory + '/docs'
 LintIntermediateDirectory = IntermediateDirectory + '/lint'
 
@@ -39,6 +41,7 @@ task :all => [:build, :test, :docs] do
 end
 
 task :docs do
+  puts "[docs]"
   # check that doxygen is in the path or something
   unless system('which doxygen &> /dev/null')
     raise "doxygen could not be found"
@@ -54,7 +57,7 @@ task :docs do
   # doxygen requires a default configuration file
   if !File.exists?('src/doxygen.config')
     puts "generating default doxygen configuration"
-    system('doxygen -g src/doxygen.config')
+    sh 'doxygen -g src/doxygen.config > /dev/null'
   end
 
   puts "configuring doxygen"
@@ -80,7 +83,22 @@ task :docs do
 end
 
 task :test => [:build] do
-  FileUtils.mkdir_p(IntermediateDirectory)
+  puts "[test]"
+  FileUtils.mkdir_p(TestIntermediateDirectory)
+
+  # Start with basic testing of the manufactured files
+  classname = "NSString"
+  lname = "string"
+  uname = "String"
+  plural = "s"
+  CollectionParser.types.each do |x|
+    parser = CollectionParser.new(x)
+    header = parser.writeHeader(classname, lname, uname, plural, TestIntermediateDirectory)
+    impl = parser.writeImplementation(classname, lname, uname, plural, TestIntermediateDirectory)
+
+    # ruby "src/build/tests.rb"?
+  end
+
   # ruby "test/unittest.rb"
   # build working test files for each collection type via string replacement
     # -TODO: ruby lib to build working test headers and impls via string replacement
@@ -92,7 +110,8 @@ task :test => [:build] do
 end
 
 task :build => [:lint] do
-  FileUtils.mkdir_p(IntermediateDirectory)
+  puts "[build]"
+  FileUtils.mkdir_p(BuildIntermediateDirectory)
   # strip comments from all .m and .h -- for now only worry about comments matching trim ^//… and block comments matching trim /* … */.
   # combine same-type files starting with NN — NNStrongArray NNMutableStrongArray into string blob
   # strip newlines
@@ -100,6 +119,7 @@ task :build => [:lint] do
 end
 
 task :lint do
+  puts "[lint]"
   FileUtils.mkdir_p(LintIntermediateDirectory)
 
   classname = "NSString"
