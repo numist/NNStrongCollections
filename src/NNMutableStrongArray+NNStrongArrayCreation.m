@@ -17,7 +17,7 @@
     return nil;
 }
 
-+ (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
++ (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
 {
     // TODO:
     return nil;

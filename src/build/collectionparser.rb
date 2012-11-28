@@ -14,17 +14,7 @@ class CollectionParser
     files.collect {|x| /\/NN(.*)\.h/.match(x)[1]}
   end
 
-  def initialize(theType)
-    @collectionType = theType
-    if !CollectionParser.types.include? theType
-      raise 'invalid type: '+theType
-    end
-    self
-  end
-
-  def writeHeader(classname, lname, uname, pluralSuffix, path)
-    categories = Dir[@@source+'/NN'+@collectionType+'*+*.h']
-
+  def self.fileHeader
     result = <<-EOS
 //
 //  Generated on #{Time.new}.
@@ -36,10 +26,21 @@ class CollectionParser
 //
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+EOS
+  end
 
-#import <Foundation/Foundation.h>
+  def initialize(theType)
+    @collectionType = theType
+    if !CollectionParser.types.include? theType
+      raise 'invalid type: '+theType
+    end
+    self
+  end
 
-    EOS
+  def writeHeader(classname, lname, uname, pluralSuffix, path)
+    categories = Dir[@@source+'/NN'+@collectionType+'*+*.h']
+
+    result = CollectionParser.fileHeader + "\n#import <Foundation/Foundation.h>\n\n"
 
     result << "\n//\n// "+@@source+'/NN'+@collectionType+'.h'+"\n//\n\n"
     result << IO.read(@@source+'/NN'+@collectionType+'.h')+"\n"
@@ -64,21 +65,7 @@ class CollectionParser
   def writeImplementation(classname, lname, uname, pluralSuffix, path)
     categories = Dir[@@source+'/NN'+@collectionType+'*+*.m']
 
-    result = <<-EOS
-//
-//  Generated on #{Time.new}.
-//  Contents copyright © 2012 Scott Perry (http://numist.net)
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-
-#import "NN#{@collectionType.sub(/Strong/, uname)}.h"
-
-    EOS
+    result = CollectionParser.fileHeader + "\n#import \"NN"+@collectionType.sub(/Strong/, uname)+".h\"\n\n"
 
     result << "\n//\n// "+@@source+'/NN'+@collectionType+'.m'+"\n//\n\n"
     result << IO.read(@@source+'/NN'+@collectionType+'.m')+"\n"
@@ -100,16 +87,21 @@ class CollectionParser
     filename
   end
 
-  def macroBlob
+  def macroHeader
     result = IO.read(@@source+'/NN'+@collectionType+'.h')
     Dir[@@source+'/NN'+@collectionType+'*+*.h'].each do |header|
       result << IO.read(header)
     end
-    result << IO.read(@@source+'/NN'+@collectionType+'.m')
+    # consider not removing all the newlines and spaces?
+    result = result.gsub(/[\s]*\/\/.*$/, '').gsub(/\/\*[\*]*.*?\*\//m, '').gsub(/[\n]+/, " \\\n")
+  end
+
+  def macroImplementation
+    result = IO.read(@@source+'/NN'+@collectionType+'.m')
     Dir[@@source+'/NN'+@collectionType+'*+*.m'].each do |impl|
       result << IO.read(impl)
     end
-
+    # consider not removing all the newlines and spaces?
     result = result.gsub(/[\s]*\/\/.*$/, '').gsub(/\/\*[\*]*.*?\*\//m, '').gsub(/[\s]+/m, ' ')
   end
 end

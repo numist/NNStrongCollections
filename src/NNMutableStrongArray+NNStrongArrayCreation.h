@@ -72,7 +72,7 @@
  @param initWith##_Uname_##_pluralSuffix_:
  @param strongArrayWith##_Uname_##_pluralSuffix_:
  */
-- (id)initWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt;
+- (id)initWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
 
 /**
  Initializes a newly allocated array by placing in it the _lname_##_pluralSuffix_ in the argument list.

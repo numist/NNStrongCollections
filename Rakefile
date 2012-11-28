@@ -83,7 +83,10 @@ task :test => [:build] do
   puts "[test]"
   FileUtils.mkdir_p(TestIntermediateDirectory)
 
+  testableStrongCollections = CollectionParser.fileHeader
+
   # Start with basic testing of the manufactured files
+  # TODO: build test type classes that include logic for actually, you know, running tests.
   classname = "NSString"
   lname = "string"
   uname = "String"
@@ -94,9 +97,22 @@ task :test => [:build] do
     impl = parser.writeImplementation(classname, lname, uname, plural, TestIntermediateDirectory)
     sh "#{CC} -I#{TestIntermediateDirectory} #{LIBS} #{CFLAGS} -dynamiclib -o #{impl.ext(".a")} #{impl}"
 
+    testableStrongCollections += <<-EOS
+
+NN#{x}(#{classname}, #{lname}, #{uname}, #{plural})
+EOS
+
     # ruby "src/build/tests.rb"?
   end
 
+  filename = TestIntermediateDirectory+"/TestableStrongCollections.h"
+  puts "generating #{filename}"
+  open(filename, 'w') do |f|
+    f << testableStrongCollections
+  end
+  impl = "tests/StrongCollections.m"
+  sh "#{CC} -I#{TestIntermediateDirectory} -Ibuild -Itests #{LIBS} #{CFLAGS} -dynamiclib -o #{impl.ext(".a")} #{impl}"
+  
   # ruby "test/unittest.rb"
   # build working test files for each collection type via string replacement
     # -TODO: ruby lib to build working test headers and impls via string replacement
@@ -111,14 +127,35 @@ task :build => [:lint] do
   puts "[build]"
   FileUtils.mkdir_p(BuildIntermediateDirectory)
 
+  header = CollectionParser.fileHeader+"\n#import <Foundation/Foundation.h>\n"
+  implementation = CollectionParser.fileHeader+"\n#import <Foundation/Foundation.h>\n"
+  template = "\n"+IO.read('src/template.h')
+
   CollectionParser.types.each do |x|
-    filename = BuildIntermediateDirectory+'/NN'+x+'.h'
-    puts "generating #{filename}"
-    open(filename, 'w') do |f|
-      f << CollectionParser.new(x).macroBlob
-    end
+    puts "generating #{x}"
+
+    # header
+    header += "\n"+template.gsub(/__NNMacroDefinitionForStrongType__/, CollectionParser.new(x).macroHeader).gsub(/__StrongType__/, x)
+
+    #implementation
+    implementation += "\n"+template.gsub(/__NNMacroDefinitionForStrongType__/, CollectionParser.new(x).macroHeader+CollectionParser.new(x).macroImplementation).gsub(/__StrongType__/, x)
+
   end
-  # create NNStrongCollections.h by injecting macros.h into template.h and replacing _NNMacroDefinitionForType with Type's blob (Type eg: StrongArray)
+
+  filename = "build/NNStrongCollections.h"
+  puts "generating #{filename}"
+  open(filename, 'w') do |f|
+    f << header
+  end
+
+  filename = "build/NNStrongCollections+Implementation.h"
+  puts "generating #{filename}"
+  open(filename, 'w') do |f|
+    f << implementation
+  end
+
+  # user creates a .m, includes +Implementation and then their collections header and viola, implementations.
+
 end
 
 task :lint do
