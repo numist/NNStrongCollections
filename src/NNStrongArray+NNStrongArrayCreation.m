@@ -82,7 +82,7 @@
     self = [super init];
     if (!self) return nil;
 
-    [self nnCheckCollection:array];
+    [[self class] nnCheckCollection:array];
     self->_secretInternalArray = [[NSArray alloc] initWithArray:array];
 
     return self;
@@ -93,7 +93,7 @@
     self = [super init];
     if (!self) return nil;
 
-    [self nnCheckCollection:array];
+    [[self class] nnCheckCollection:array];
     self->_secretInternalArray = [[NSArray alloc] initWithArray:array copyItems:flag];
 
     return self;
@@ -109,7 +109,7 @@
     va_start(args, firstObj);
     self->_secretInternalArray = [[NSArray alloc] initWithObjects:firstObj, args];
     va_end(args);
-    [self nnCheckCollection:self->_secretInternalArray];
+    [[self class] nnCheckCollection:self->_secretInternalArray];
 
     return self;
 }
@@ -120,7 +120,7 @@
     if (!self) return nil;
 
     self->_secretInternalArray = [[NSArray alloc] initWithObjects:objects count:count];
-    [self nnCheckCollection:self->_secretInternalArray];
+    [[self class] nnCheckCollection:self->_secretInternalArray];
 
     return self;
 }
@@ -131,7 +131,7 @@
     if (!self) return nil;
 
     self->_secretInternalArray = [[NSArray alloc] initWithContentsOfFile:path];
-    [self nnCheckCollection:self->_secretInternalArray];
+    [[self class] nnCheckCollection:self->_secretInternalArray];
 
     return self;
 }
@@ -142,7 +142,7 @@
     if (!self) return nil;
 
     self->_secretInternalArray = [[NSArray alloc] initWithContentsOfURL:url];
-    [self nnCheckCollection:self->_secretInternalArray];
+    [[self class] nnCheckCollection:self->_secretInternalArray];
 
     return self;
 }

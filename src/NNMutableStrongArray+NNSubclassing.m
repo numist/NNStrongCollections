@@ -26,7 +26,7 @@
 // NSMutableArray required overloads
 - (void)insertObject:(id)anObject atIndex:(NSUInteger)index;
 {
-    [self nnCheckObject:anObject];
+    [[self class] nnCheckObject:anObject];
 
     [self->_secretInternalMutableArray insertObject:anObject atIndex:index];
 }
@@ -38,7 +38,7 @@
 
 - (void)addObject:(id)anObject;
 {
-    [self nnCheckObject:anObject];
+    [[self class] nnCheckObject:anObject];
 
     [self->_secretInternalMutableArray addObject:anObject];
 }
@@ -50,7 +50,7 @@
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject;
 {
-    [self nnCheckObject:anObject];
+    [[self class] nnCheckObject:anObject];
 
     [self->_secretInternalMutableArray replaceObjectAtIndex:index withObject:anObject];
 }

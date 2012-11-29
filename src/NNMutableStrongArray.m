@@ -13,8 +13,8 @@
     NSMutableArray *_secretInternalMutableArray;
 }
 
-- (void)nnCheckObject:(id)obj;
-- (void)nnCheckCollection:(id<NSFastEnumeration>)collection;
++ (void)nnCheckObject:(id)obj;
++ (void)nnCheckCollection:(id<NSFastEnumeration>)collection;
 
 @end
 
@@ -45,7 +45,8 @@
     [self replaceObjectAtIndex:index withObject:some##_Uname_];
 }
 
-- (void)nnCheckObject:(id)obj;
+// TODO: Consider making this a static, uniquely-named C function for faster calls
++ (void)nnCheckObject:(id)obj;
 {
     if (![obj isKindOfClass:[_class_ class]]) {
         @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
@@ -54,10 +55,11 @@
     }
 }
 
-- (void)nnCheckCollection:(id<NSFastEnumeration>)collection;
+// TODO: Consider making this a static, uniquely-named C function for faster calls
++ (void)nnCheckCollection:(id<NSFastEnumeration>)collection;
 {
     for (id obj in collection) {
-        [self nnCheckObject:obj];
+        [[self class] nnCheckObject:obj];
     }
 }
 

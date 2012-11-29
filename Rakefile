@@ -135,8 +135,6 @@ task :build => [:lint] do
   template = "\n"+IO.read('src/template.h')
 
   CollectionParser.types.each do |x|
-    puts "generating #{x}"
-
     # header
     header += "\n"+template.gsub(/__NNMacroDefinitionForStrongType__/, CollectionParser.new(x).macroHeader).gsub(/__StrongType__/, x)
 
