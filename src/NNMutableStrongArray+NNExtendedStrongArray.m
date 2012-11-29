@@ -13,22 +13,16 @@
 
 - (NNMutable##_Uname_##Array *)strongArrayByAdding##_Uname_:(_class_ *)some##_Uname_;
 {
-    // TODO:
-    return nil;
+    NNMutable##_Uname_##Array *result = [[self class] arrayWithArray:self];
+    [result addObject:some##_Uname_];
+    return result;
 }
 
 - (NNMutable##_Uname_##Array *)strongArrayByAdding##_Uname_##_pluralSuffix_##FromArray:(NSArray *)otherArray;
 {
-    for (id obj in otherArray) {
-        if (![obj isKindOfClass:[_class_ class]]) {
-            @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
-                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
-                                         userInfo:nil];
-        }
-    }
-
-    // TODO:
-    return nil;
+    NNMutable##_Uname_##Array *result = [[self class] arrayWithArray:self];
+    [result addObjectsFromArray:otherArray];
+    return result;
 }
 
 - (BOOL)contains##_Uname_:(_class_ *)some##_Uname_;
@@ -93,8 +87,7 @@
 
 - (NNMutable##_Uname_##Array *)_lname_##_pluralSuffix_##AtIndexes:(NSIndexSet *)indexes;
 {
-    // TODO:
-    return nil;
+    return [[self class] strongArrayWithArray:[self objectsAtIndexes:indexes]];
 }
 
 - (_class_ *)_lname_##AtIndexedSubscript:(NSUInteger)idx;

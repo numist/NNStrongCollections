@@ -13,14 +13,6 @@
 
 - (void)add##_Uname_##_pluralSuffix_##FromArray:(NSArray *)otherArray;
 {
-    for (id obj in otherArray) {
-        if (![obj isKindOfClass:[_class_ class]]) {
-            @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
-                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
-                                         userInfo:nil];
-        }
-    }
-
     [self addObjectsFromArray:otherArray];
 }
 
@@ -66,27 +58,11 @@
 
 - (void)replace##_Uname_##_pluralSuffix_##InRange:(NSRange)range with##_Uname_##_pluralSuffix_##FromArray:(NSArray *)otherArray range:(NSRange)otherRange;
 {
-    for (NSUInteger i = otherRange.location; i - otherRange.location < otherRange.length; i++) {
-        if (![[otherArray objectAtIndex:i] isKindOfClass:[_class_ class]]) {
-            @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
-                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
-                                         userInfo:nil];
-        }
-    }
-
     [self replaceObjectsInRange:range withObjectsFromArray:otherArray range:otherRange];
 }
 
 - (void)replace##_Uname_##_pluralSuffix_##InRange:(NSRange)range with##_Uname_##_pluralSuffix_##FromArray:(NSArray *)otherArray;
 {
-    for (id obj in otherArray) {
-        if (![obj isKindOfClass:[_class_ class]]) {
-            @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
-                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
-                                         userInfo:nil];
-        }
-    }
-
     [self replaceObjectsInRange:range withObjectsFromArray:otherArray];
 }
 
@@ -97,15 +73,6 @@
 
 - (void)insert##_Uname_##_pluralSuffix_:(NSArray *)_lname_##_pluralSuffix_ atIndexes:(NSIndexSet *)indexes;
 {
-    for (id obj in _lname_##_pluralSuffix_) {
-        if (![obj isKindOfClass:[_class_ class]]) {
-            @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
-                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
-                                         userInfo:nil];
-        }
-    }
-
-
     [self insertObjects:_lname_##_pluralSuffix_ atIndexes:indexes];
 }
 
@@ -116,14 +83,6 @@
 
 - (void)replace##_Uname_##_pluralSuffix_##AtIndexes:(NSIndexSet *)indexes with##_Uname_##_pluralSuffix_:(NSArray *)_lname_##_pluralSuffix_;
 {
-    for (id obj in _lname_##_pluralSuffix_) {
-        if (![obj isKindOfClass:[_class_ class]]) {
-            @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
-                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
-                                         userInfo:nil];
-        }
-    }
-
     [self replaceObjectsAtIndexes:indexes withObjects:_lname_##_pluralSuffix_];
 }
 
