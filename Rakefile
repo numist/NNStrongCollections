@@ -113,8 +113,8 @@ EOS
   open(filename, 'w') do |f|
     f << testableStrongCollections
   end
-  impl = "tests/StrongCollections.m"
-  sh "#{CC} -I#{TestIntermediateDirectory} -Ibuild -Itests #{LIBS} #{CFLAGS} -dynamiclib -o #{impl.ext(".a")} #{impl}"
+  impl = "StrongCollections.m"
+  sh "#{CC} -I#{TestIntermediateDirectory} -Ibuild -Itests #{LIBS} #{CFLAGS} -dynamiclib -o #{TestIntermediateDirectory}/#{impl.ext(".a")} tests/#{impl}"
   
   # ruby "test/unittest.rb"
   # build working test files for each collection type via string replacement
