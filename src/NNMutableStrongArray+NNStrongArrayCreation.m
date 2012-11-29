@@ -156,7 +156,7 @@
     return self;
 }
 
-// TODO: only emit this for manual memory management situations
+// TODO: support manual memory management
 // - (void)dealloc;
 // {
 //     [self->_secretInternalMutableArray _AUTORELEASE_];

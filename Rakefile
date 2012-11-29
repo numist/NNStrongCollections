@@ -16,16 +16,18 @@ TestIntermediateDirectory = IntermediateDirectory + '/test'
 DocumentationIntermediateDirectory = IntermediateDirectory + '/docs'
 LintIntermediateDirectory = IntermediateDirectory + '/lint'
 
+# Actual compilation is only done for tests and lint—this project delivers source code.
+#   Actually, this project delivers macros.
 CC  = 'clang'
 LD  = CC
 CFLAGS = [
-  '-std=c99',
-  '-fobjc-arc',
+  '-std=c99',     # why isn't this the default?
+  '-fobjc-arc',   # TODO: support manual memory management
   '-O0',
   '-g',
-  '-Werror',
-  '-pedantic',
-  '-Wno-sentinel'
+  '-Werror',      # required
+  '-pedantic',    # required
+  '-Wno-sentinel' # required due to too many people (including me!) being clever at compile-time :V
 ].join(' ')
 LIBS = ['-framework Foundation'].join(' ')
 
@@ -56,11 +58,11 @@ task :docs do
 
   # doxygen requires a default configuration file
   if !File.exists?('src/doxygen.config')
-    puts "generating default doxygen configuration"
+    puts "generating default doxygen.config"
     sh 'doxygen -g src/doxygen.config > /dev/null'
   end
 
-  puts "generating documentation"
+  puts "generating docset"
   config = IO.read('src/doxygen.config')
   config << <<-EOS
     INPUT = .
@@ -179,8 +181,4 @@ task :lint do
     # analyze
     sh "#{CC} -I#{LintIntermediateDirectory} --analyze #{CFLAGS} -o #{impl.ext(".a")} #{impl}"
   end
-
-  # build one set of test files via string replacement
-    # -TODO: ruby lib to build working test headers and impls via string replacement
-  # cpp lint test files
 end
