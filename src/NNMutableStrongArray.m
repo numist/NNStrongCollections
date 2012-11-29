@@ -9,6 +9,15 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+@interface NNMutable##_Uname_##Array () {
+    NSMutableArray *_secretInternalMutableArray;
+}
+
+- (void)nnCheckObject:(id)obj;
+- (void)nnCheckCollection:(id<NSFastEnumeration>)collection;
+
+@end
+
 @implementation NNMutable##_Uname_##Array
 
 - (void)add##_Uname_:(_class_ *)some##_Uname_;
@@ -34,6 +43,22 @@
 - (void)replace##_Uname_##AtIndex:(NSUInteger)index with##_Uname_:(_class_ *)some##_Uname_;
 {
     [self replaceObjectAtIndex:index withObject:some##_Uname_];
+}
+
+- (void)nnCheckObject:(id)obj;
+{
+    if (![obj isKindOfClass:[_class_ class]]) {
+        @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
+                                       reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
+                                     userInfo:nil];
+    }
+}
+
+- (void)nnCheckCollection:(id<NSFastEnumeration>)collection;
+{
+    for (id obj in collection) {
+        [self nnCheckObject:obj];
+    }
 }
 
 @end

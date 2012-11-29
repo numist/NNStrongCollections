@@ -5,6 +5,10 @@ class CollectionParser
   def self.source; @@source end
   def self.source= v; @@source = v end
 
+  @@usingArc = true
+  def autorelease; @@usingArc ? "self" : "autorelease" end
+  def self.usingArc= v; @@usingArc = v end
+
   @collectionType = nil
   def collectionType; @collectionType end
 
@@ -80,6 +84,8 @@ EOS
       result = result.gsub(/([#]{2})?#{token}([#]{2})?/, substitution[token])
     }
 
+    result = result.gsub(/_AUTORELEASE_/, self.autorelease)
+
     filename = path+'/NN'+@collectionType.sub(/Strong/, uname)+'.m'
     open(filename, 'w') do |f|
       f << result
@@ -102,6 +108,6 @@ EOS
       result << IO.read(impl)
     end
     # consider not removing all the newlines and spaces?
-    result = result.gsub(/[\s]*\/\/.*$/, '').gsub(/\/\*[\*]*.*?\*\//m, '').gsub(/[\s]+/m, ' ')
+    result = result.gsub(/[\s]*\/\/.*$/, '').gsub(/\/\*[\*]*.*?\*\//m, '').gsub(/[\s]+/m, ' ').gsub(/_AUTORELEASE_/, self.autorelease)
   end
 end

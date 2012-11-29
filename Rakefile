@@ -24,7 +24,8 @@ CFLAGS = [
   '-O0',
   '-g',
   '-Werror',
-  '-pedantic'
+  '-pedantic',
+  '-Wno-sentinel'
 ].join(' ')
 LIBS = ['-framework Foundation'].join(' ')
 
@@ -128,7 +129,7 @@ task :build => [:lint] do
   FileUtils.mkdir_p(BuildIntermediateDirectory)
 
   header = CollectionParser.fileHeader+"\n#import <Foundation/Foundation.h>\n"
-  implementation = CollectionParser.fileHeader+"\n#import <Foundation/Foundation.h>\n"
+  implementation = CollectionParser.fileHeader+"\n#import <Foundation/Foundation.h>\n#include <stdarg.h>\n"
   template = "\n"+IO.read('src/template.h')
 
   CollectionParser.types.each do |x|
