@@ -9,36 +9,50 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@interface NN##_Uname_##Array () {
-    NSArray *_secretInternalArray;
+// Any subclass of NSArray must override the primitive instance methods count and objectAtIndex:
+@implementation NNMutable##_Uname_##Array (NNSubclassing)
+
+// NSArray required overloads
+- (NSUInteger)count;
+{
+    return [self->_secretInternalMutableArray count];
 }
 
-- (void)nnCheckObject:(id)obj;
-- (void)nnCheckCollection:(id<NSFastEnumeration>)collection;
-
-@end
-
-@implementation NN##_Uname_##Array
-
-- (_class_ *)_lname_##AtIndex:(NSUInteger)index;
+- (id)objectAtIndex:(NSUInteger)index;
 {
-    return (_class_ *)[self objectAtIndex:index];
+    return [self->_secretInternalMutableArray objectAtIndex:index];
 }
 
-- (void)nnCheckObject:(id)obj;
+// NSMutableArray required overloads
+- (void)insertObject:(id)anObject atIndex:(NSUInteger)index;
 {
-    if (![obj isKindOfClass:[_class_ class]]) {
-        @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
-                                       reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
-                                     userInfo:nil];
-    }
+    [self nnCheckObject:anObject];
+
+    [self->_secretInternalMutableArray insertObject:anObject atIndex:index];
 }
 
-- (void)nnCheckCollection:(id<NSFastEnumeration>)collection;
+- (void)removeObjectAtIndex:(NSUInteger)index;
 {
-    for (id obj in collection) {
-        [self nnCheckObject:obj];
-    }
+    [self->_secretInternalMutableArray removeObjectAtIndex:index];
+}
+
+- (void)addObject:(id)anObject;
+{
+    [self nnCheckObject:anObject];
+
+    [self->_secretInternalMutableArray addObject:anObject];
+}
+
+- (void)removeLastObject;
+{
+    [self->_secretInternalMutableArray removeLastObject];
+}
+
+- (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject;
+{
+    [self nnCheckObject:anObject];
+
+    [self->_secretInternalMutableArray replaceObjectAtIndex:index withObject:anObject];
 }
 
 @end

@@ -11,29 +11,44 @@
 
 @implementation NN##_Uname_##Array (NN##_Uname_##ArrayCreation)
 
+// Static creation
+
 + (NN##_Uname_##Array *)strongArrayWith##_Uname_:(_class_ *)some##_Uname_;
 {
-    // TODO:
-    return nil;
+    return [[[self alloc] initWithArray:@[some##_Uname_]] _AUTORELEASE_];
 }
 
 + (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
 {
-    // TODO:
-    return nil;
+    return [[[self alloc] initWith##_Uname_##_pluralSuffix_:_lname_##_pluralSuffix_ count:cnt] _AUTORELEASE_];
 }
 
 + (NN##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ...;
 {
-    // TODO:
-    return nil;
+    va_list args;
+    va_start(args, firstObj);
+    NN##_Uname_##Array * result = [[[self alloc] initWith##_Uname_##_pluralSuffix_:firstObj, args] _AUTORELEASE_];
+    va_end(args);
+
+    return result;
 }
 
 + (NN##_Uname_##Array *)strongArrayWithArray:(NSArray *)array;
 {
-    // TODO:
-    return nil;
+    return [[[self alloc] initWithArray:array] _AUTORELEASE_];
 }
+
++ (id)arrayWithContentsOfFile:(NSString *)path;
+{
+    return [[[self alloc] initWithContentsOfFile:path] _AUTORELEASE_];
+}
+
++ (id)arrayWithContentsOfURL:(NSURL *)url;
+{
+    return [[[self alloc] initWithContentsOfURL:url] _AUTORELEASE_];
+}
+
+// Custom initialization
 
 - (id)initWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
 {
@@ -42,63 +57,100 @@
 
 - (id)initWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ...;
 {
-    // TODO:
-    return nil;
+    va_list args;
+    va_start(args, firstObj);
+    id result = [self initWithObjects:firstObj, args];
+    va_end(args);
+
+    return result;
+}
+
+// Initializer overrides
+
+- (id)init;
+{
+    self = [super init];
+    if (!self) return nil;
+
+    self->_secretInternalArray = [[NSArray alloc] init];
+
+    return self;
 }
 
 - (id)initWithArray:(NSArray *)array;
 {
-    for (id obj in array) {
-        if (![obj isKindOfClass:[_class_ class]]) {
-            @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayInvalidTypeException"
-                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
-                                         userInfo:nil];
-        }
-    }
+    self = [super init];
+    if (!self) return nil;
 
-    return [self initWithArray:array];
+    [self nnCheckCollection:array];
+    self->_secretInternalArray = [[NSArray alloc] initWithArray:array];
+
+    return self;
 }
 
 - (id)initWithArray:(NSArray *)array copyItems:(BOOL)flag;
 {
-    for (id obj in array) {
-        if (![obj isKindOfClass:[_class_ class]]) {
-            @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayInvalidTypeException"
-                                           reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
-                                         userInfo:nil];
-        }
-    }
+    self = [super init];
+    if (!self) return nil;
 
-    return [self initWithArray:array copyItems:flag];
+    [self nnCheckCollection:array];
+    self->_secretInternalArray = [[NSArray alloc] initWithArray:array copyItems:flag];
+
+    return self;
 }
 
 
-+ (id)arrayWithContentsOfFile:(NSString *)path;
+- (id)initWithObjects:(id)firstObj, ...;
 {
-    @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayDeprecatedMethodException"
-                                   reason:[NSString stringWithFormat:@"Selector %@ is not supported by NN##_Uname_##Arrays", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
+    self = [super init];
+    if (!self) return nil;
+
+    va_list args;
+    va_start(args, firstObj);
+    self->_secretInternalArray = [[NSArray alloc] initWithObjects:firstObj, args];
+    va_end(args);
+    [self nnCheckCollection:self->_secretInternalArray];
+
+    return self;
 }
 
-+ (id)arrayWithContentsOfURL:(NSURL *)url;
+- (id)initWithObjects:(const id[])objects count:(NSUInteger)count;
 {
-    @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayDeprecatedMethodException"
-                                   reason:[NSString stringWithFormat:@"Selector %@ is not supported by NN##_Uname_##Arrays", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
+    self = [super init];
+    if (!self) return nil;
+
+    self->_secretInternalArray = [[NSArray alloc] initWithObjects:objects count:count];
+    [self nnCheckCollection:self->_secretInternalArray];
+
+    return self;
 }
 
 - (id)initWithContentsOfFile:(NSString *)path;
 {
-    @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayDeprecatedMethodException"
-                                   reason:[NSString stringWithFormat:@"Selector %@ is not supported by NN##_Uname_##Arrays", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
+    self = [super init];
+    if (!self) return nil;
+
+    self->_secretInternalArray = [[NSArray alloc] initWithContentsOfFile:path];
+    [self nnCheckCollection:self->_secretInternalArray];
+
+    return self;
 }
 
 - (id)initWithContentsOfURL:(NSURL *)url;
 {
-    @throw [NSException exceptionWithName:@"NN##_Uname_##ArrayDeprecatedMethodException"
-                                   reason:[NSString stringWithFormat:@"Selector %@ is not supported by NN##_Uname_##Arrays", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
+    self = [super init];
+    if (!self) return nil;
+
+    self->_secretInternalArray = [[NSArray alloc] initWithContentsOfURL:url];
+    [self nnCheckCollection:self->_secretInternalArray];
+
+    return self;
 }
 
+// TODO: support manual memory management
+// - (void)dealloc;
+// {
+//     [self->_secretInternalArray _AUTORELEASE_];
+//     [super dealloc];
+// }
 @end

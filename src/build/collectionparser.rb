@@ -5,6 +5,7 @@ class CollectionParser
   def self.source; @@source end
   def self.source= v; @@source = v end
 
+  # TODO: support manual memory management
   @@usingArc = true
   def autorelease; @@usingArc ? "self" : "autorelease" end
   def self.usingArc= v; @@usingArc = v end
