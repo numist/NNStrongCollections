@@ -29,7 +29,9 @@ CFLAGS = [
   '-pedantic',    # required
   '-Wno-sentinel' # required due to too many people (including me!) being clever at compile-time :V
 ].join(' ')
-LIBS = ['-framework Foundation'].join(' ')
+LIBS = [
+  '-framework Foundation'
+].join(' ')
 
 task :default => [:all]
 
@@ -51,10 +53,7 @@ task :docs do
   end
 
   FileUtils.mkdir_p(DocumentationIntermediateDirectory)
-
-  CollectionParser.types.each {|x|
-    puts "generating "+CollectionParser.new(x).writeHeader("NNWidget", "widget", "Widget", "s", DocumentationIntermediateDirectory)
-  }
+  sh "cp src/NN*.h "+DocumentationIntermediateDirectory
 
   # doxygen requires a default configuration file
   if !File.exists?('src/doxygen.config')
@@ -83,47 +82,7 @@ task :docs do
 end
 
 task :test => [:build] do
-  puts "[test]"
-  FileUtils.mkdir_p(TestIntermediateDirectory)
-
-  testableStrongCollections = CollectionParser.fileHeader
-
-  # Start with basic testing of the manufactured files
-  # TODO: build test type classes that include logic for actually, you know, running tests.
-  classname = "NSString"
-  lname = "string"
-  uname = "String"
-  plural = "s"
-  CollectionParser.types.each do |x|
-    parser = CollectionParser.new(x)
-    parser.writeHeader(classname, lname, uname, plural, TestIntermediateDirectory)
-    impl = parser.writeImplementation(classname, lname, uname, plural, TestIntermediateDirectory)
-    sh "#{CC} -I#{TestIntermediateDirectory} #{LIBS} #{CFLAGS} -dynamiclib -o #{impl.ext(".a")} #{impl}"
-
-    testableStrongCollections += <<-EOS
-
-NN#{x}(#{classname}, #{lname}, #{uname}, #{plural})
-EOS
-
-    # ruby "src/build/tests.rb"?
-  end
-
-  filename = TestIntermediateDirectory+"/TestableStrongCollections.h"
-  puts "generating #{filename}"
-  open(filename, 'w') do |f|
-    f << testableStrongCollections
-  end
-  impl = "StrongCollections.m"
-  sh "#{CC} -I#{TestIntermediateDirectory} -Ibuild -Itests #{LIBS} #{CFLAGS} -dynamiclib -o #{TestIntermediateDirectory}/#{impl.ext(".a")} tests/#{impl}"
-  
-  # ruby "test/unittest.rb"
-  # build working test files for each collection type via string replacement
-    # -TODO: ruby lib to build working test headers and impls via string replacement
-  # build binary
-  # build tests testing string replacement
-  # run tests testing string replacement
-  # build tests testing macro usage
-  # run tests testing macro usage
+  # TBD, I'm doing some ad-hoc stuff with what's in tests/ocunit
 end
 
 task :build => [:lint] do

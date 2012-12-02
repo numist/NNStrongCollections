@@ -9,7 +9,7 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@interface NNMutable##_Uname_##Array () {
+@interface NNMutableWidgetArray () {
     NSMutableArray *_secretInternalMutableArray;
 }
 
@@ -18,39 +18,39 @@
 
 @end
 
-@implementation NNMutable##_Uname_##Array
+@implementation NNMutableWidgetArray
 
-- (void)add##_Uname_:(_class_ *)some##_Uname_;
+- (void)addWidget:(NNWidget *)someWidget;
 {
-    [self addObject:some##_Uname_];
+    [self addObject:someWidget];
 }
 
-- (void)insert##_Uname_:(_class_ *)some##_Uname_ atIndex:(NSUInteger)index;
+- (void)insertWidget:(NNWidget *)someWidget atIndex:(NSUInteger)index;
 {
-    [self insertObject:some##_Uname_ atIndex:index];
+    [self insertObject:someWidget atIndex:index];
 }
 
-- (void)removeLast##_Uname_;
+- (void)removeLastWidget;
 {
     [self removeLastObject];
 }
 
-- (void)remove##_Uname_##AtIndex:(NSUInteger)index;
+- (void)removeWidgetAtIndex:(NSUInteger)index;
 {
     [self removeObjectAtIndex:index];
 }
 
-- (void)replace##_Uname_##AtIndex:(NSUInteger)index with##_Uname_:(_class_ *)some##_Uname_;
+- (void)replaceWidgetAtIndex:(NSUInteger)index withWidget:(NNWidget *)someWidget;
 {
-    [self replaceObjectAtIndex:index withObject:some##_Uname_];
+    [self replaceObjectAtIndex:index withObject:someWidget];
 }
 
 // TODO: Consider making this a static, uniquely-named C function for faster calls
 + (void)nnCheckObject:(id)obj;
 {
-    if (![obj isKindOfClass:[_class_ class]]) {
-        @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
-                                       reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
+    if (![obj isKindOfClass:[NNWidget class]]) {
+        @throw [NSException exceptionWithName:@"NNMutableWidgetArrayInvalidTypeException"
+                                       reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of NNWidget", NSStringFromSelector(_cmd)]
                                      userInfo:nil];
     }
 }

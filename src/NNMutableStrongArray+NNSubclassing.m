@@ -10,7 +10,7 @@
 //
 
 // Any subclass of NSArray must override the primitive instance methods count and objectAtIndex:
-@implementation NNMutable##_Uname_##Array (NNSubclassing)
+@implementation NNMutableWidgetArray (NNSubclassing)
 
 // NSArray required overloads
 - (NSUInteger)count;

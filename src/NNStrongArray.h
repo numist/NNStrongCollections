@@ -1,20 +1,20 @@
 /**
- NN##_Uname_##Array and its subclass NNMutable##_Uname_##Array manage ordered collections of _lname_ called arrays. NN##_Uname_##Array creates static arrays, and NNMutable##_Uname_##Array creates dynamic arrays. You can use arrays when you need an ordered collection of _lname_##_pluralSuffix_.
+ NNWidgetArray and its subclass NNMutableWidgetArray manage ordered collections of widget called arrays. NNWidgetArray creates static arrays, and NNMutableWidgetArray creates dynamic arrays. You can use arrays when you need an ordered collection of widgets.
  */
-@interface NN##_Uname_##Array : NSArray
+@interface NNWidgetArray : NSArray
 
 /**
- Returns the _lname_ located at index.
+ Returns the widget located at index.
 
-     - (_class_ *)_lname_##AtIndex:(NSUInteger)index
+     - (NNWidget *)widgetAtIndex:(NSUInteger)index
 
  @param index An index within the bounds of the array.
- @return The _lname_ located at index.
+ @return The widget located at index.
  @remarks If index is beyond the end of the array (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
  @see NSArray#objectAtIndex:
- @see _lname_##_pluralSuffix_##AtIndexes:
- @see _lname_##AtIndexedSubscript:
+ @see widgetsAtIndexes:
+ @see widgetAtIndexedSubscript:
  */
-- (_class_ *)_lname_##AtIndex:(NSUInteger)index;
+- (NNWidget *)widgetAtIndex:(NSUInteger)index;
 
 @end

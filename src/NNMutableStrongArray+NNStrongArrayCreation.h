@@ -1,98 +1,98 @@
-@interface NNMutable##_Uname_##Array (NN##_Uname_##ArrayCreation)
+@interface NNMutableWidgetArray (NNWidgetArrayCreation)
 
 /**
- Creates and returns an array containing a given _lname_.
+ Creates and returns an array containing a given widget.
 
-     + (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_:(_class_ *)some##_Uname_
+     + (NNMutableWidgetArray *)strongArrayWithWidget:(NNWidget *)someWidget
 
- @param some##_Uname_ An _lname_.
+ @param someWidget An widget.
 
- @return An array containing the single element some##_Uname_.
+ @return An array containing the single element someWidget.
 
  @see NSArray#arrayWithObject:
- @see strongArrayWith##_Uname_##_pluralSuffix_:
+ @see strongArrayWithWidgets:
  */
-+ (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_:(_class_ *)some##_Uname_;
++ (NNMutableWidgetArray *)strongArrayWithWidget:(NNWidget *)someWidget;
 
 /**
- Creates and returns an array that includes a given number of _lname_##_pluralSuffix_ from a given C array.
+ Creates and returns an array that includes a given number of widgets from a given C array.
 
-     + (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt
+     + (NNMutableWidgetArray *)strongArrayWithWidgets:(const id [])widgets count:(NSUInteger)cnt
 
- @param _lname_##_pluralSuffix_ A C array of _lname_##_pluralSuffix_.
- @param count The number of values from the _lname_##_pluralSuffix_ C array to include in the new array. This number will be the count of the new array—it must not be negative or greater than the number of elements in _lname_##_pluralSuffix_.
+ @param widgets A C array of widgets.
+ @param count The number of values from the widgets C array to include in the new array. This number will be the count of the new array—it must not be negative or greater than the number of elements in widgets.
 
- @return A new array including the first count _lname_##_pluralSuffix_ from _lname_##_pluralSuffix_.
+ @return A new array including the first count widgets from widgets.
 
  @see NSArray#arrayWithObjects:count:
- @see get##_Uname_##_pluralSuffix_:range:
+ @see getWidgets:range:
  */
-+ (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
++ (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
 
 /**
- Creates and returns an array containing the _lname_##_pluralSuffix_ in the argument list.
+ Creates and returns an array containing the widgets in the argument list.
 
-     + (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
+     + (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
 
- @param firstObj, ... A comma-separated list of _lname_##_pluralSuffix_ ending with nil.
+ @param firstObj, ... A comma-separated list of widgets ending with nil.
 
- @return An array containing the _lname_##_pluralSuffix_ in the argument list.
+ @return An array containing the widgets in the argument list.
 
  @see NSArray#arrayWithObjects:
- @see arrayWith##_Uname_:
+ @see arrayWithWidget:
  */
-+ (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
++ (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
- Creates and returns an array containing the _lname_##_pluralSuffix_ in another given array.
+ Creates and returns an array containing the widgets in another given array.
 
-     + (NNMutable##_Uname_##Array *)strongArrayWithArray:(NSArray *)array
+     + (NNMutableWidgetArray *)strongArrayWithArray:(NSArray *)array
 
  @param anArray An array.
 
- @return An array containing the _lname_##_pluralSuffix_ in anArray.
+ @return An array containing the widgets in anArray.
 
  @see NSArray#arrayWithArray:
- @see arrayWith##_Uname_##_pluralSuffix_:
- @see initWith##_Uname_##_pluralSuffix_##:
+ @see arrayWithWidgets:
+ @see initWithWidgets:
  */
-+ (NNMutable##_Uname_##Array *)strongArrayWithArray:(NSArray *)array;
++ (NNMutableWidgetArray *)strongArrayWithArray:(NSArray *)array;
 
 /**
- Initializes a newly allocated array to include a given number of _lname_##_pluralSuffix_ from a given C array.
+ Initializes a newly allocated array to include a given number of widgets from a given C array.
 
-     - (id)initWith##_Uname_##_pluralSuffix_:(const id [])_lname_##_pluralSuffix_## count:(NSUInteger)cnt
+     - (id)initWithWidgets:(const id [])widgets count:(NSUInteger)cnt
 
  @param objects A C array of objects.
- @param count The number of values from the _lname_##_pluralSuffix_ C array to include in the new array. This number will be the count of the new array—it must not be negative or greater than the number of elements in objects.
+ @param count The number of values from the widgets C array to include in the new array. This number will be the count of the new array—it must not be negative or greater than the number of elements in objects.
 
- @return A newly allocated array including the first count _lname_##_pluralSuffix_ from _lname_##_pluralSuffix_. The returned _lname_ might be different than the original receiver.
+ @return A newly allocated array including the first count widgets from widgets. The returned widget might be different than the original receiver.
 
  @see NSArray#initWithObjects:count:
- @param initWith##_Uname_##_pluralSuffix_:
- @param strongArrayWith##_Uname_##_pluralSuffix_:
+ @param initWithWidgets:
+ @param strongArrayWithWidgets:
  */
-- (id)initWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
+- (id)initWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
 
 /**
- Initializes a newly allocated array by placing in it the _lname_##_pluralSuffix_ in the argument list.
+ Initializes a newly allocated array by placing in it the widgets in the argument list.
 
-     - (id)initWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
+     - (id)initWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
 
- @param firstObj, ... A comma-separated list of _lname_##_pluralSuffix_ ending with nil.
+ @param firstObj, ... A comma-separated list of widgets ending with nil.
 
- @return An array initialized to include the _lname_##_pluralSuffix_ in the argument list. The returned _lname_ might be different than the original receiver.
+ @return An array initialized to include the widgets in the argument list. The returned widget might be different than the original receiver.
 
  @see NSArray#initWithObjects:
- @see initWith##_Uname_##_pluralSuffix_:count:
- @see strongArrayWith##_Uname_##_pluralSuffix_:
+ @see initWithWidgets:count:
+ @see strongArrayWithWidgets:
  */
-- (id)initWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  Instead, try using:
  @code
- [NNMutable##_Uname_##Array strongArrayWithArray:[NSArray arrayWithContentsOfFile:path]]
+ [NNMutableWidgetArray strongArrayWithArray:[NSArray arrayWithContentsOfFile:path]]
  @endcode
  @deprecated
  */
@@ -101,7 +101,7 @@
 /**
  Instead, try using:
  @code
- [NNMutable##_Uname_##Array strongArrayWithArray:[NSArray arrayWithContentsOfURL:url]]
+ [NNMutableWidgetArray strongArrayWithArray:[NSArray arrayWithContentsOfURL:url]]
  @endcode
  @deprecated
  */

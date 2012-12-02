@@ -9,7 +9,7 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@interface NN##_Uname_##Array () {
+@interface NNWidgetArray () {
     NSArray *_secretInternalArray;
 }
 
@@ -18,19 +18,19 @@
 
 @end
 
-@implementation NN##_Uname_##Array
+@implementation NNWidgetArray
 
-- (_class_ *)_lname_##AtIndex:(NSUInteger)index;
+- (NNWidget *)widgetAtIndex:(NSUInteger)index;
 {
-    return (_class_ *)[self objectAtIndex:index];
+    return (NNWidget *)[self objectAtIndex:index];
 }
 
 // TODO: Consider making this a static, uniquely-named C function for faster calls
 + (void)nnCheckObject:(id)obj;
 {
-    if (![obj isKindOfClass:[_class_ class]]) {
-        @throw [NSException exceptionWithName:@"NNMutable##_Uname_##ArrayInvalidTypeException"
-                                       reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of _class_", NSStringFromSelector(_cmd)]
+    if (![obj isKindOfClass:[NNWidget class]]) {
+        @throw [NSException exceptionWithName:@"NNMutableWidgetArrayInvalidTypeException"
+                                       reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of NNWidget", NSStringFromSelector(_cmd)]
                                      userInfo:nil];
     }
 }

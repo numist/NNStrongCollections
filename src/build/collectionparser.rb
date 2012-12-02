@@ -55,8 +55,8 @@ EOS
       result << IO.read(header)
     end
 
-    substitution = { '_class_' => classname, '_lname_' => lname, '_Uname_' => uname, '_pluralSuffix_' => pluralSuffix }
-    ['_class_', '_lname_', '_Uname_', '_pluralSuffix_'].each{|token|
+    substitution = { 'NNWidget' => classname, 'widget' => lname, 'Widget' => uname, 's' => pluralSuffix }
+    ['NNWidget', 'widget', 'Widget', 's'].each{|token|
       result = result.gsub(/([#]{2})?#{token}([#]{2})?/, substitution[token])
     }
 
@@ -80,8 +80,8 @@ EOS
       result << IO.read(implementation)
     end
 
-    substitution = { '_class_' => classname, '_lname_' => lname, '_Uname_' => uname, '_pluralSuffix_' => pluralSuffix }
-    ['_class_', '_lname_', '_Uname_', '_pluralSuffix_'].each{|token|
+    substitution = { 'NNWidget' => classname, 'widget' => lname, 'Widget' => uname, 's' => pluralSuffix }
+    ['NNWidget', 'widget', 'Widget', 's'].each{|token|
       result = result.gsub(/([#]{2})?#{token}([#]{2})?/, substitution[token])
     }
 
@@ -99,6 +99,7 @@ EOS
     Dir[@@source+'/NN'+@collectionType+'*+*.h'].each do |header|
       result << IO.read(header)
     end
+    result = self.setupMacroArgs(result)
     # consider not removing all the newlines and spaces?
     result = result.gsub(/[\s]*\/\/.*$/, '').gsub(/\/\*[\*]*.*?\*\//m, '').gsub(/[\n]+/, " \\\n")
   end
@@ -108,7 +109,25 @@ EOS
     Dir[@@source+'/NN'+@collectionType+'*+*.m'].each do |impl|
       result << IO.read(impl)
     end
+    result = self.setupMacroArgs(result)
+    result = result.gsub(/^#.*/, '')
     # consider not removing all the newlines and spaces?
-    result = result.gsub(/[\s]*\/\/.*$/, '').gsub(/\/\*[\*]*.*?\*\//m, '').gsub(/[\s]+/m, ' ').gsub(/_AUTORELEASE_/, self.autorelease)
+    result = result.gsub(/[\s]*\/\/.*$/, '').gsub(/\/\*[\*]*.*?\*\//m, '').gsub(/[\s]+/m, ' ')
+  end
+
+  def setupMacroArgs(string)
+    [
+      ["Widgets", "_Uname_##_pluralSuffix_"],
+      ["widgets", "_lname_##_pluralSuffix_"],
+      ["NNWidget", "_class_"],
+      ["Widget", "_Uname_"],
+      ["widget", "_lname_"]
+    ].each do |pair|
+      string = string.gsub(/([a-z0-9])#{pair.at(0)}([A-Z0-9])/, '\1##'+pair.at(1)+'##\2')
+      string = string.gsub(/([a-z0-9])#{pair.at(0)}/, '\1##'+pair.at(1))
+      string = string.gsub(/#{pair.at(0)}([A-Z0-9])/, pair.at(1)+'##\1')
+      string = string.gsub(/#{pair.at(0)}/, pair.at(1))
+    end
+    string
   end
 end

@@ -9,57 +9,67 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@implementation NNMutable##_Uname_##Array (NN##_Uname_##ArrayCreation)
+@implementation NNMutableWidgetArray (NNWidgetArrayCreation)
 
 // Static creation
 
-+ (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_:(_class_ *)some##_Uname_;
++ (NNMutableWidgetArray *)strongArrayWithWidget:(NNWidget *)someWidget;
 {
-    return [[[self alloc] initWithArray:@[some##_Uname_]] _AUTORELEASE_];
+    return [[[self alloc] initWithArray:@[someWidget]] self];
 }
 
-+ (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
++ (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
 {
-    return [[[self alloc] initWith##_Uname_##_pluralSuffix_:_lname_##_pluralSuffix_ count:cnt] _AUTORELEASE_];
+    return [[[self alloc] initWithWidgets:widgets count:cnt] self];
 }
 
-+ (NNMutable##_Uname_##Array *)strongArrayWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ...;
++ (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget *)firstObj, ...;
 {
+    
     va_list args;
     va_start(args, firstObj);
-    NNMutable##_Uname_##Array * result = [[[self alloc] initWith##_Uname_##_pluralSuffix_:firstObj, args] _AUTORELEASE_];
+    // TRUST ME, I'M A PROFESSIONAL
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wsentinel"
+    NNMutableWidgetArray * result = [[[self alloc] initWithWidgets:firstObj, args] self];
+#pragma clang diagnostic pop
     va_end(args);
+
 
     return result;
 }
 
-+ (NNMutable##_Uname_##Array *)strongArrayWithArray:(NSArray *)array;
++ (NNMutableWidgetArray *)strongArrayWithArray:(NSArray *)array;
 {
-    return [[[self alloc] initWithArray:array] _AUTORELEASE_];
+    return [[[self alloc] initWithArray:array] self];
 }
 
 + (id)arrayWithContentsOfFile:(NSString *)path;
 {
-    return [[[self alloc] initWithContentsOfFile:path] _AUTORELEASE_];
+    return [[[self alloc] initWithContentsOfFile:path] self];
 }
 
 + (id)arrayWithContentsOfURL:(NSURL *)url;
 {
-    return [[[self alloc] initWithContentsOfURL:url] _AUTORELEASE_];
+    return [[[self alloc] initWithContentsOfURL:url] self];
 }
 
 // Custom initialization
 
-- (id)initWith##_Uname_##_pluralSuffix_:(_class_ const * [])_lname_##_pluralSuffix_ count:(NSUInteger)cnt;
+- (id)initWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
 {
-    return [self initWithObjects:_lname_##_pluralSuffix_ count:cnt];
+    return [self initWithObjects:widgets count:cnt];
 }
 
-- (id)initWith##_Uname_##_pluralSuffix_:(_class_ *)firstObj, ...;
+- (id)initWithWidgets:(NNWidget *)firstObj, ...;
 {
     va_list args;
     va_start(args, firstObj);
+    // TRUST ME, I'M A PROFESSIONAL
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wsentinel"
     id result = [self initWithObjects:firstObj, args];
+#pragma clang diagnostic pop
     va_end(args);
 
     return result;
@@ -116,7 +126,11 @@
 
     va_list args;
     va_start(args, firstObj);
+    // TRUST ME, I'M A PROFESSIONAL
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wsentinel"
     self->_secretInternalMutableArray = [[NSMutableArray alloc] initWithObjects:firstObj, args];
+#pragma clang diagnostic pop
     va_end(args);
     [[self class] nnCheckCollection:self->_secretInternalMutableArray];
 
@@ -159,7 +173,7 @@
 // TODO: support manual memory management
 // - (void)dealloc;
 // {
-//     [self->_secretInternalMutableArray _AUTORELEASE_];
+//     [self->_secretInternalMutableArray self];
 //     [super dealloc];
 // }
 

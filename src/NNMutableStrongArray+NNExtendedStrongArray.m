@@ -9,140 +9,140 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@implementation NNMutable##_Uname_##Array (NNExtended##_Uname_##Array)
+@implementation NNMutableWidgetArray (NNExtendedWidgetArray)
 
-- (NNMutable##_Uname_##Array *)strongArrayByAdding##_Uname_:(_class_ *)some##_Uname_;
+- (NNMutableWidgetArray *)strongArrayByAddingWidget:(NNWidget *)someWidget;
 {
-    NNMutable##_Uname_##Array *result = [[self class] arrayWithArray:self];
-    [result addObject:some##_Uname_];
+    NNMutableWidgetArray *result = [[self class] arrayWithArray:self];
+    [result addObject:someWidget];
     return result;
 }
 
-- (NNMutable##_Uname_##Array *)strongArrayByAdding##_Uname_##_pluralSuffix_##FromArray:(NSArray *)otherArray;
+- (NNMutableWidgetArray *)strongArrayByAddingWidgetsFromArray:(NSArray *)otherArray;
 {
-    NNMutable##_Uname_##Array *result = [[self class] arrayWithArray:self];
+    NNMutableWidgetArray *result = [[self class] arrayWithArray:self];
     [result addObjectsFromArray:otherArray];
     return result;
 }
 
-- (BOOL)contains##_Uname_:(_class_ *)some##_Uname_;
+- (BOOL)containsWidget:(NNWidget *)someWidget;
 {
-    return [self containsObject:some##_Uname_];
+    return [self containsObject:someWidget];
 }
 
-- (_class_ *)first##_Uname_##CommonWithArray:(NSArray *)otherArray;
+- (NNWidget *)firstWidgetCommonWithArray:(NSArray *)otherArray;
 {
-    return (_class_ *)[self firstObjectCommonWithArray:otherArray];
+    return (NNWidget *)[self firstObjectCommonWithArray:otherArray];
 }
 
-- (void)get##_Uname_##_pluralSuffix_:(id __unsafe_unretained [])_lname_##_pluralSuffix_ range:(NSRange)range;
+- (void)getWidgets:(id __unsafe_unretained [])widgets range:(NSRange)range;
 {
-    [self getObjects:_lname_##_pluralSuffix_ range:range];
+    [self getObjects:widgets range:range];
 }
 
-- (NSUInteger)indexOf##_Uname_:(_class_ *)some##_Uname_;
+- (NSUInteger)indexOfWidget:(NNWidget *)someWidget;
 {
-    return [self indexOfObject:some##_Uname_];
+    return [self indexOfObject:someWidget];
 }
 
-- (NSUInteger)indexOf##_Uname_:(_class_ *)some##_Uname_ inRange:(NSRange)range;
+- (NSUInteger)indexOfWidget:(NNWidget *)someWidget inRange:(NSRange)range;
 {
-    return [self indexOfObject:some##_Uname_ inRange:range];
+    return [self indexOfObject:someWidget inRange:range];
 }
 
-- (NSUInteger)indexOf##_Uname_##IdenticalTo:(_class_ *)some##_Uname_;
+- (NSUInteger)indexOfWidgetIdenticalTo:(NNWidget *)someWidget;
 {
-    return [self indexOfObjectIdenticalTo:some##_Uname_];
+    return [self indexOfObjectIdenticalTo:someWidget];
 }
 
-- (NSUInteger)indexOf##_Uname_##IdenticalTo:(_class_ *)some##_Uname_ inRange:(NSRange)range;
+- (NSUInteger)indexOfWidgetIdenticalTo:(NNWidget *)someWidget inRange:(NSRange)range;
 {
-    return [self indexOfObjectIdenticalTo:some##_Uname_ inRange:range];
+    return [self indexOfObjectIdenticalTo:someWidget inRange:range];
 }
 
-- (_class_ *)last##_Uname_;
+- (NNWidget *)lastWidget;
 {
-    return (_class_ *)[self lastObject];
+    return (NNWidget *)[self lastObject];
 }
 
-- (NSEnumerator *)_lname_##Enumerator;
+- (NSEnumerator *)widgetEnumerator;
 {
     return [self objectEnumerator];
 }
 
-- (NSEnumerator *)reverse##_Uname_##Enumerator;
+- (NSEnumerator *)reverseWidgetEnumerator;
 {
     return [self reverseObjectEnumerator];
 }
 
-- (void)make##_Uname_##_pluralSuffix_##PerformSelector:(SEL)aSelector;
+- (void)makeWidgetsPerformSelector:(SEL)aSelector;
 {
     [self makeObjectsPerformSelector:aSelector];
 }
 
-- (void)make##_Uname_##_pluralSuffix_##PerformSelector:(SEL)aSelector withObject:(id)argument;
+- (void)makeWidgetsPerformSelector:(SEL)aSelector withObject:(id)argument;
 {
     [self makeObjectsPerformSelector:aSelector withObject:argument];
 }
 
-- (NNMutable##_Uname_##Array *)_lname_##_pluralSuffix_##AtIndexes:(NSIndexSet *)indexes;
+- (NNMutableWidgetArray *)widgetsAtIndexes:(NSIndexSet *)indexes;
 {
     return [[self class] strongArrayWithArray:[self objectsAtIndexes:indexes]];
 }
 
-- (_class_ *)_lname_##AtIndexedSubscript:(NSUInteger)idx;
+- (NNWidget *)widgetAtIndexedSubscript:(NSUInteger)idx;
 {
-    return (_class_ *)[self objectAtIndexedSubscript:idx];
+    return (NNWidget *)[self objectAtIndexedSubscript:idx];
 }
 
-- (void)enumerate##_Uname_##_pluralSuffix_##UsingBlock:(void (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateWidgetsUsingBlock:(void (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))block;
 {
     [self enumerateObjectsUsingBlock:block];
 }
 
-- (void)enumerate##_Uname_##_pluralSuffix_##WithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateWidgetsWithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))block;
 {
     [self enumerateObjectsWithOptions:opts usingBlock:block];
 }
 
-- (void)enumerate##_Uname_##_pluralSuffix_##AtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts usingBlock:(void (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts usingBlock:(void (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))block;
 {
     [self enumerateObjectsAtIndexes:s options:opts usingBlock:block];
 }
 
-- (NSUInteger)indexOf##_Uname_##PassingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
+- (NSUInteger)indexOfWidgetPassingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 {
     return [self indexOfObjectPassingTest:predicate];
 }
 
-- (NSUInteger)indexOf##_Uname_##WithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
+- (NSUInteger)indexOfWidgetWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 {
     return [self indexOfObjectWithOptions:opts passingTest:predicate];
 }
 
-- (NSUInteger)indexOf##_Uname_##AtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
+- (NSUInteger)indexOfWidgetAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 {
     return [self indexOfObjectAtIndexes:s options:opts passingTest:predicate];
 }
 
-- (NSIndexSet *)indexesOf##_Uname_##_pluralSuffix_##PassingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
+- (NSIndexSet *)indexesOfWidgetsPassingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 {
     return [self indexesOfObjectsPassingTest:predicate];
 }
 
-- (NSIndexSet *)indexesOf##_Uname_##_pluralSuffix_##WithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
+- (NSIndexSet *)indexesOfWidgetsWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 {
     return [self indexesOfObjectsWithOptions:opts passingTest:predicate];
 }
 
-- (NSIndexSet *)indexesOf##_Uname_##_pluralSuffix_##AtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(_class_ * some##_Uname_, NSUInteger idx, BOOL *stop))predicate;
+- (NSIndexSet *)indexesOfWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 {
     return [self indexesOfObjectsAtIndexes:s options:opts passingTest:predicate];
 }
 
-- (NSUInteger)indexOf##_Uname_:(_class_ *)some##_Uname_ inSortedRange:(NSRange)r options:(NSBinarySearchingOptions)opts usingComparator:(NSComparator)cmp;
+- (NSUInteger)indexOfWidget:(NNWidget *)someWidget inSortedRange:(NSRange)r options:(NSBinarySearchingOptions)opts usingComparator:(NSComparator)cmp;
 {
-    return [self indexOfObject:some##_Uname_ inSortedRange:r options:opts usingComparator:cmp];
+    return [self indexOfObject:someWidget inSortedRange:r options:opts usingComparator:cmp];
 }
 
 @end

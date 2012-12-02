@@ -11,7 +11,7 @@
 
 // Any subclass of NSArray must override the primitive instance methods count and objectAtIndex:
 // TODO: which means it needs an ivar to forward to. fuck.
-@implementation NN##_Uname_##Array (NNSubclassing)
+@implementation NNWidgetArray (NNSubclassing)
 
 // NSArray required overloads
 - (NSUInteger)count;
