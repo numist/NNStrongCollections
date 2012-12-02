@@ -89,32 +89,4 @@
  */
 - (id)initWithWidgets:(NSWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
 
-/**
- Instead, try using:
- @code
- [NNMutableWidgetArray strongArrayWithArray:[NSArray arrayWithContentsOfFile:path]]
- @endcode
- @deprecated
- */
-+ (id)arrayWithContentsOfFile:(NSString *)path __attribute__ ((deprecated));
-
-/**
- Instead, try using:
- @code
- [NNMutableWidgetArray strongArrayWithArray:[NSArray arrayWithContentsOfURL:url]]
- @endcode
- @deprecated
- */
-+ (id)arrayWithContentsOfURL:(NSURL *)url __attribute__ ((deprecated));
-
-/**
- @deprecated
- */
-- (id)initWithContentsOfFile:(NSString *)path __attribute__ ((deprecated));
-
-/**
- @deprecated
- */
-- (id)initWithContentsOfURL:(NSURL *)url __attribute__ ((deprecated));
-
 @end

@@ -153,26 +153,4 @@
     return self;
 }
 
-- (id)initWithContentsOfFile:(NSString *)path;
-{
-    self = [super init];
-    if (!self) return nil;
-
-    self->_secretInternalArray = [[NSArray alloc] initWithContentsOfFile:path];
-    [[self class] nnCheckCollection:self->_secretInternalArray];
-
-    return self;
-}
-
-- (id)initWithContentsOfURL:(NSURL *)url;
-{
-    self = [super init];
-    if (!self) return nil;
-
-    self->_secretInternalArray = [[NSArray alloc] initWithContentsOfURL:url];
-    [[self class] nnCheckCollection:self->_secretInternalArray];
-
-    return self;
-}
-
 @end
