@@ -3,7 +3,7 @@
 /**
  Creates and returns an array containing a given widget.
 
-     + (NNMutableWidgetArray *)strongArrayWithWidget:(NNWidget *)someWidget
+     + (NNMutableWidgetArray *)strongArrayWithWidget:(NSWidget *)someWidget
 
  @param someWidget An widget.
 
@@ -12,7 +12,7 @@
  @see NSArray#arrayWithObject:
  @see strongArrayWithWidgets:
  */
-+ (NNMutableWidgetArray *)strongArrayWithWidget:(NNWidget *)someWidget;
++ (NNMutableWidgetArray *)strongArrayWithWidget:(NSWidget *)someWidget;
 
 /**
  Creates and returns an array that includes a given number of widgets from a given C array.
@@ -27,12 +27,12 @@
  @see NSArray#arrayWithObjects:count:
  @see getWidgets:range:
  */
-+ (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
++ (NNMutableWidgetArray *)strongArrayWithWidgets:(NSWidget const * [])widgets count:(NSUInteger)cnt;
 
 /**
  Creates and returns an array containing the widgets in the argument list.
 
-     + (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
+     + (NNMutableWidgetArray *)strongArrayWithWidgets:(NSWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
 
  @param firstObj, ... A comma-separated list of widgets ending with nil.
 
@@ -41,7 +41,7 @@
  @see NSArray#arrayWithObjects:
  @see arrayWithWidget:
  */
-+ (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
++ (NNMutableWidgetArray *)strongArrayWithWidgets:(NSWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  Creates and returns an array containing the widgets in another given array.
@@ -72,12 +72,12 @@
  @param initWithWidgets:
  @param strongArrayWithWidgets:
  */
-- (id)initWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
+- (id)initWithWidgets:(NSWidget const * [])widgets count:(NSUInteger)cnt;
 
 /**
  Initializes a newly allocated array by placing in it the widgets in the argument list.
 
-     - (id)initWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
+     - (id)initWithWidgets:(NSWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
 
  @param firstObj, ... A comma-separated list of widgets ending with nil.
 
@@ -87,7 +87,7 @@
  @see initWithWidgets:count:
  @see strongArrayWithWidgets:
  */
-- (id)initWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initWithWidgets:(NSWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  Instead, try using:

@@ -26,22 +26,22 @@
     [self removeAllObjects];
 }
 
-- (void)removeWidget:(NNWidget *)someWidget inRange:(NSRange)range;
+- (void)removeWidget:(NSWidget *)someWidget inRange:(NSRange)range;
 {
     [self removeObject:someWidget inRange:range];
 }
 
-- (void)removeWidget:(NNWidget *)someWidget;
+- (void)removeWidget:(NSWidget *)someWidget;
 {
     [self removeObject:someWidget];
 }
 
-- (void)removeWidgetIdenticalTo:(NNWidget *)someWidget inRange:(NSRange)range;
+- (void)removeWidgetIdenticalTo:(NSWidget *)someWidget inRange:(NSRange)range;
 {
     [self removeObjectIdenticalTo:someWidget inRange:range];
 }
 
-- (void)removeWidgetIdenticalTo:(NNWidget *)someWidget;
+- (void)removeWidgetIdenticalTo:(NSWidget *)someWidget;
 {
     [self removeObjectIdenticalTo:someWidget];
 }
@@ -66,7 +66,7 @@
     [self replaceObjectsInRange:range withObjectsFromArray:otherArray];
 }
 
-- (void)sortUsingWidgetFunction:(NSInteger (*)(NNWidget *, NNWidget *, void *))compare context:(void *)context;
+- (void)sortUsingWidgetFunction:(NSInteger (*)(NSWidget *, NSWidget *, void *))compare context:(void *)context;
 {
     [self sortUsingFunction:(NSInteger (*)(id, id, void *))compare context:context];
 }
@@ -86,7 +86,7 @@
     [self replaceObjectsAtIndexes:indexes withObjects:widgets];
 }
 
-- (void)setWidget:(NNWidget *)someWidget atIndexedSubscript:(NSUInteger)idx;
+- (void)setWidget:(NSWidget *)someWidget atIndexedSubscript:(NSUInteger)idx;
 {
     [self setObject:someWidget atIndexedSubscript:idx];
 }

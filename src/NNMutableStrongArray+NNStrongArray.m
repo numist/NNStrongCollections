@@ -11,9 +11,9 @@
 
 @implementation NNMutableWidgetArray (NNWidgetArray)
 
-- (NNWidget *)widgetAtIndex:(NSUInteger)index;
+- (NSWidget *)widgetAtIndex:(NSUInteger)index;
 {
-    return (NNWidget *)[self objectAtIndex:index];
+    return (NSWidget *)[self objectAtIndex:index];
 }
 
 @end

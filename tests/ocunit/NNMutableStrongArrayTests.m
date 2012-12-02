@@ -14,7 +14,7 @@
 
 - (void)testStrongArrayWithWidget;
 {
-    STAssertNotNil([NNMutableWidgetArray strongArrayWithWidget:[NNWidget widget]], @"");
+    STAssertNotNil([NNMutableWidgetArray strongArrayWithWidget:[NSWidget widget]], @"");
 }
 
 - (void)testStrongArrayWithWidgetFailure;
@@ -31,27 +31,28 @@
 //{
 //
 //}
-//
-//- (void)testStrongArrayWithWidgets;
-//{
-//
-//}
-//
-//- (void)testStrongArrayWithWidgetsFailure;
-//{
-//
-//}
+
+- (void)testStrongArrayWithWidgets;
+{
+    NNMutableWidgetArray *array = [NNMutableWidgetArray strongArrayWithWidgets:[NSWidget widget], [NSWidget widget], nil];
+    STAssertNotNil(array, @"");
+}
+
+- (void)testStrongArrayWithWidgetsFailure;
+{
+    STAssertThrows(([NNMutableWidgetArray strongArrayWithWidgets:[NSWidget widget], [NSString string], [NSWidget widget], nil]), @"");
+}
 
 - (void)testStrongArrayWithArray;
 {
     NSArray *array = @[
-    [NNWidget widget],
-    [NNWidget widget],
-    [NNWidget widget],
-    [NNWidget widget],
-    [NNWidget widget],
-    [NNWidget widget],
-    [NNWidget widget]
+        [NSWidget widget],
+        [NSWidget widget],
+        [NSWidget widget],
+        [NSWidget widget],
+        [NSWidget widget],
+        [NSWidget widget],
+        [NSWidget widget]
     ];
     
     STAssertNotNil([NNMutableWidgetArray strongArrayWithArray:array], @"");
@@ -72,21 +73,22 @@
 //{
 //
 //}
-//
-//- (void)testInitWithWidgets;
-//{
-//
-//}
-//
-//- (void)testInitWithWidgetsFailure;
-//{
-//
-//}
+
+- (void)testInitWithWidgets;
+{
+    NNMutableWidgetArray *array = [[NNMutableWidgetArray alloc]initWithWidgets:[NSWidget widget], [NSWidget widget], nil];
+    STAssertNotNil(array, @"");
+}
+
+- (void)testInitWithWidgetsFailure;
+{
+    STAssertThrows(((void)[[NNMutableWidgetArray alloc]initWithWidgets:[NSWidget widget], [NSString string], [NSWidget widget], nil]), @"");
+}
 
 - (void)testAddObject;
 {
     NNMutableWidgetArray *array = [NNMutableWidgetArray array];
-    [array addObject:[NNWidget widget]];
+    [array addObject:[NSWidget widget]];
     STAssertTrue([array count] == 1, @"");
 }
 
@@ -99,8 +101,8 @@
 
 - (void)testInsertObjectAtIndex;
 {
-    NNMutableWidgetArray *array = [NNMutableWidgetArray arrayWithArray:@[[NNWidget widget], [NNWidget widget]]];
-    NNWidget *widget = [NNWidget widget];
+    NNMutableWidgetArray *array = [NNMutableWidgetArray arrayWithArray:@[[NSWidget widget], [NSWidget widget]]];
+    NSWidget *widget = [NSWidget widget];
     
     [array insertObject:widget atIndex:1];
     STAssertTrue([array count] == 3, @"");
@@ -109,7 +111,7 @@
 
 - (void)testInsertObjectAtIndexFailure;
 {
-    NNMutableWidgetArray *array = [NNMutableWidgetArray arrayWithArray:@[[NNWidget widget], [NNWidget widget]]];
+    NNMutableWidgetArray *array = [NNMutableWidgetArray arrayWithArray:@[[NSWidget widget], [NSWidget widget]]];
 
     STAssertThrows([array insertObject:[NSString string] atIndex:1], @"");
     STAssertTrue([array count] == 2, @"");
@@ -117,8 +119,8 @@
 
 - (void)testReplaceObjectAtIndexWithObject;
 {
-    NNMutableWidgetArray *array = [NNMutableWidgetArray arrayWithArray:@[[NNWidget widget], [NNWidget widget]]];
-    NNWidget *widget = [NNWidget widget];
+    NNMutableWidgetArray *array = [NNMutableWidgetArray arrayWithArray:@[[NSWidget widget], [NSWidget widget]]];
+    NSWidget *widget = [NSWidget widget];
     
     [array replaceObjectAtIndex:1 withObject:widget];
     STAssertTrue([array count] == 2, @"");
@@ -127,7 +129,7 @@
 
 - (void)testReplaceObjectAtIndexWithObjectFailure;
 {
-    NNMutableWidgetArray *array = [NNMutableWidgetArray arrayWithArray:@[[NNWidget widget], [NNWidget widget]]];
+    NNMutableWidgetArray *array = [NNMutableWidgetArray arrayWithArray:@[[NSWidget widget], [NSWidget widget]]];
     
     STAssertThrows([array replaceObjectAtIndex:1 withObject:[NSString string]], @"");
     STAssertTrue([array count] == 2, @"");

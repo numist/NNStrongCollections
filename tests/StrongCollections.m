@@ -11,9 +11,4 @@
 
 #import "NNStrongCollections+Implementation.h"
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsentinel"
-
 #import "TestableStrongCollections.h"
-
-#pragma clang diagnostic pop

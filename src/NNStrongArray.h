@@ -6,7 +6,7 @@
 /**
  Returns the widget located at index.
 
-     - (NNWidget *)widgetAtIndex:(NSUInteger)index
+     - (NSWidget *)widgetAtIndex:(NSUInteger)index
 
  @param index An index within the bounds of the array.
  @return The widget located at index.
@@ -15,6 +15,6 @@
  @see widgetsAtIndexes:
  @see widgetAtIndexedSubscript:
  */
-- (NNWidget *)widgetAtIndex:(NSUInteger)index;
+- (NSWidget *)widgetAtIndex:(NSUInteger)index;
 
 @end

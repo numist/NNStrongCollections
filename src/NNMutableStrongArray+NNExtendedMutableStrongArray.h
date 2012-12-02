@@ -37,7 +37,7 @@
 /**
  Removes all occurrences within a specified range in the array of a given widget.
 
-     - (void)removeWidget:(NNWidget *)someWidget inRange:(NSRange)range
+     - (void)removeWidget:(NSWidget *)someWidget inRange:(NSRange)range
 
  @param someWidget The widget to remove from the array's content.
  @param aRange The range from which to remove someWidget.
@@ -52,12 +52,12 @@
  @see removeWidgetIdenticalTo:
  @see removeWidgetsInArray:
  */
-- (void)removeWidget:(NNWidget *)someWidget inRange:(NSRange)range;
+- (void)removeWidget:(NSWidget *)someWidget inRange:(NSRange)range;
 
 /**
  Removes all occurrences in the array of a given widget.
 
-     - (void)removeWidget:(NNWidget *)someWidget
+     - (void)removeWidget:(NSWidget *)someWidget
 
  @param someWidget The widget to remove from the array.
 
@@ -68,12 +68,12 @@
  @see removeWidgetIdenticalTo:
  @see removeWidgetsInArray:
  */
-- (void)removeWidget:(NNWidget *)someWidget;
+- (void)removeWidget:(NSWidget *)someWidget;
 
 /**
  Removes all occurrences of someWidget within the specified range in the array.
 
-     - (void)removeWidgetIdenticalTo:(NNWidget *)someWidget inRange:(NSRange)range
+     - (void)removeWidgetIdenticalTo:(NSWidget *)someWidget inRange:(NSRange)range
 
  @param someWidget The widget to remove from the array within aRange.
  @param aRange The range in the array from which to remove someWidget.
@@ -85,12 +85,12 @@
  @see removeWidgetAtIndex:
  @see removeWidgetsAtIndexes:
 */
-- (void)removeWidgetIdenticalTo:(NNWidget *)someWidget inRange:(NSRange)range;
+- (void)removeWidgetIdenticalTo:(NSWidget *)someWidget inRange:(NSRange)range;
 
 /**
  Removes all occurrences of a given widget in the array.
 
-     - (void)removeWidgetIdenticalTo:(NNWidget *)someWidget
+     - (void)removeWidgetIdenticalTo:(NSWidget *)someWidget
 
  @param someWidget The widget to remove from the array.
 
@@ -100,7 +100,7 @@
  @see removeWidget:
  @see removeWidgetAtIndex:
  */
-- (void)removeWidgetIdenticalTo:(NNWidget *)someWidget;
+- (void)removeWidgetIdenticalTo:(NSWidget *)someWidget;
 
 /**
  Removes from the receiving array the widgets in another given array.
@@ -162,7 +162,7 @@
 /**
  Sorts the array’s widgets in ascending order as defined by the comparison function compare.
 
-     - (void)sortUsingWidgetFunction:(NSInteger (*)(NNWidget *, NNWidget *, void *))compare context:(void *)context
+     - (void)sortUsingWidgetFunction:(NSInteger (*)(NSWidget *, NSWidget *, void *))compare context:(void *)context
 
  @param compare The comparison function to use to compare two widgets at a time.
  The function's parameters are two widgets to compare and the context parameter, context. The function should return NSOrderedAscending if the first widget is smaller than the second, NSOrderedDescending if the first widget is larger than the second, and NSOrderedSame if the widgets are equal.
@@ -170,7 +170,7 @@
 
  @see NSMutableArray#sortUsingFunction:context:
  */
-- (void)sortUsingWidgetFunction:(NSInteger (*)(NNWidget *, NNWidget *, void *))compare context:(void *)context;
+- (void)sortUsingWidgetFunction:(NSInteger (*)(NSWidget *, NSWidget *, void *))compare context:(void *)context;
 
 /**
  Inserts the widgets in the provided array into the receiving array at the specified indexes.
@@ -216,7 +216,7 @@
 /**
  Replaces the widget at the index with the new widget, possibly adding the widget.
 
-     - (void)setWidget:(NNWidget *)someWidget atIndexedSubscript:(NSUInteger)idx
+     - (void)setWidget:(NSWidget *)someWidget atIndexedSubscript:(NSUInteger)idx
 
  @param anWidget The widget with which to replace the widget at index index in the array. This value must not be nil.
 
@@ -227,6 +227,6 @@
  @see replaceWidgetAtIndex:withWidget:
  @see replaceWidgetsAtIndexes:withWidgets:
  */
-- (void)setWidget:(NNWidget *)someWidget atIndexedSubscript:(NSUInteger)idx;
+- (void)setWidget:(NSWidget *)someWidget atIndexedSubscript:(NSUInteger)idx;
 
 @end

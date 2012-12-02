@@ -20,17 +20,17 @@
 
 @implementation NNWidgetArray
 
-- (NNWidget *)widgetAtIndex:(NSUInteger)index;
+- (NSWidget *)widgetAtIndex:(NSUInteger)index;
 {
-    return (NNWidget *)[self objectAtIndex:index];
+    return (NSWidget *)[self objectAtIndex:index];
 }
 
 // TODO: Consider making this a static, uniquely-named C function for faster calls
 + (void)nnCheckObject:(id)obj;
 {
-    if (![obj isKindOfClass:[NNWidget class]]) {
+    if (![obj isKindOfClass:[NSWidget class]]) {
         @throw [NSException exceptionWithName:@"NNMutableWidgetArrayInvalidTypeException"
-                                       reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of NNWidget", NSStringFromSelector(_cmd)]
+                                       reason:[NSString stringWithFormat:@"Parameter to %@ is the wrong type: %@", NSStringFromClass(self), obj]
                                      userInfo:nil];
     }
 }

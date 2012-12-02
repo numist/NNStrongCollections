@@ -1,7 +1,4 @@
-#pragma mark NN__StrongType__
+#define _NNInternalCollections(_class_, _lname_, _Uname_, _pluralSuffix_) __NNMacroDefinition__
 
-#define _NNInternal__StrongType__(_class_, _lname_, _Uname_, _pluralSuffix_) \
-    __NNMacroDefinitionForStrongType__
-
-#define NN__StrongType__(class, lowerName, UpperName, pluralSuffix) \
-    _NNInternal__StrongType__(class, lowerName, UpperName, pluralSuffix)
+#define NNStrongCollections(class, lowerName, UpperName, pluralSuffix) \
+    _NNInternalCollections(class, lowerName, UpperName, pluralSuffix)

@@ -8,7 +8,7 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
 /**
  Creates and returns an array containing a given widget.
 
-     + (NNWidgetArray *)strongArrayWithWidget:(NNWidget *)someWidget
+     + (NNWidgetArray *)strongArrayWithWidget:(NSWidget *)someWidget
 
  @param someWidget An widget.
 
@@ -17,7 +17,7 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
  @see NSArray#arrayWithObject:
  @see strongArrayWithWidgets:
  */
-+ (NNWidgetArray *)strongArrayWithWidget:(NNWidget *)someWidget;
++ (NNWidgetArray *)strongArrayWithWidget:(NSWidget *)someWidget;
 
 /**
  Creates and returns an array that includes a given number of widgets from a given C array.
@@ -32,12 +32,12 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
  @see NSArray#arrayWithObjects:count:
  @see getWidgets:range:
  */
-+ (NNWidgetArray *)strongArrayWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
++ (NNWidgetArray *)strongArrayWithWidgets:(NSWidget const * [])widgets count:(NSUInteger)cnt;
 
 /**
  Creates and returns an array containing the widgets in the argument list.
 
-     + (NNWidgetArray *)strongArrayWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
+     + (NNWidgetArray *)strongArrayWithWidgets:(NSWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
 
  @param firstObj, ... A comma-separated list of widgets ending with nil.
 
@@ -46,7 +46,7 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
  @see NSArray#arrayWithObjects:
  @see arrayWithWidget:
  */
-+ (NNWidgetArray *)strongArrayWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
++ (NNWidgetArray *)strongArrayWithWidgets:(NSWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  Creates and returns an array containing the widgets in another given array.
@@ -77,12 +77,12 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
  @param initWithWidgets:
  @param strongArrayWithWidgets:
  */
-- (id)initWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
+- (id)initWithWidgets:(NSWidget const * [])widgets count:(NSUInteger)cnt;
 
 /**
  Initializes a newly allocated array by placing in it the widgets in the argument list.
 
-     - (id)initWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
+     - (id)initWithWidgets:(NSWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION
 
  @param firstObj, ... A comma-separated list of widgets ending with nil.
 
@@ -92,7 +92,7 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
  @see initWithWidgets:count:
  @see strongArrayWithWidgets:
  */
-- (id)initWithWidgets:(NNWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initWithWidgets:(NSWidget *)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  Instead, try using:

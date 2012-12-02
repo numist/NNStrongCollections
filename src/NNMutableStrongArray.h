@@ -6,7 +6,7 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
 /**
  Inserts a given widget at the end of the array.
 
-     - (void)addWidget:(NNWidget *)someWidget
+     - (void)addWidget:(NSWidget *)someWidget
 
  @param someWidget The widget to add to the end of the array's content. This value must not be nil.
 
@@ -14,19 +14,19 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
  @see addWidgetsFromArray:
  @see removeWidget:
  */
-- (void)addWidget:(NNWidget *)someWidget;
+- (void)addWidget:(NSWidget *)someWidget;
 
 /**
  Inserts a given widget into the array's contents at a given index.
 
-     - (void)insertWidget:(NNWidget *)someWidget atIndex:(NSUInteger)index
+     - (void)insertWidget:(NSWidget *)someWidget atIndex:(NSUInteger)index
 
  @param someWidget The widget to add to the array's content. This value must not be nil.
 
  @see NSMutableArray#insertObject:atIndex:
  @see removeWidgetAtIndex:
  */
-- (void)insertWidget:(NNWidget *)someWidget atIndex:(NSUInteger)index;
+- (void)insertWidget:(NSWidget *)someWidget atIndex:(NSUInteger)index;
 
 /**
  Removes the widget with the highest-valued index in the array
@@ -61,7 +61,7 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
 /**
  Replaces the widget at index with someWidget.
 
-     - (void)replaceWidgetAtIndex:(NSUInteger)index withWidget:(NNWidget *)someWidget
+     - (void)replaceWidgetAtIndex:(NSUInteger)index withWidget:(NSWidget *)someWidget
 
  @param index The index of the widget to be replaced. This value must not exceed the bounds of the array.
  @param someWidget The widget with which to replace the widget at index index in the array. This value must not be nil.
@@ -73,6 +73,6 @@ The NNMutableWidgetArray class declares the programmatic interface to objects th
  @see replaceWidgetsAtIndexes:withWidgets:
  @see setWidget:atIndexedSubscript:
  */
-- (void)replaceWidgetAtIndex:(NSUInteger)index withWidget:(NNWidget *)someWidget;
+- (void)replaceWidgetAtIndex:(NSUInteger)index withWidget:(NSWidget *)someWidget;
 
 @end

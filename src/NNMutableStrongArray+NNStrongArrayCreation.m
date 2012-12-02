@@ -13,66 +13,75 @@
 
 // Static creation
 
-+ (NNMutableWidgetArray *)strongArrayWithWidget:(NNWidget *)someWidget;
++ (NNMutableWidgetArray *)strongArrayWithWidget:(NSWidget *)someWidget;
 {
-    return [[[self alloc] initWithArray:@[someWidget]] self];
+    return [[self alloc] initWithArray:@[someWidget]];
 }
 
-+ (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
++ (NNMutableWidgetArray *)strongArrayWithWidgets:(NSWidget const * [])widgets count:(NSUInteger)cnt;
 {
-    return [[[self alloc] initWithWidgets:widgets count:cnt] self];
+    return [[self alloc] initWithWidgets:widgets count:cnt];
 }
 
-+ (NNMutableWidgetArray *)strongArrayWithWidgets:(NNWidget *)firstObj, ...;
++ (NNMutableWidgetArray *)strongArrayWithWidgets:(NSWidget *)firstObj, ...;
 {
+    NSMutableArray *array = [NSMutableArray array];
+    id arg = firstObj;
     
-    va_list args;
-    va_start(args, firstObj);
-    // TRUST ME, I'M A PROFESSIONAL
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsentinel"
-    NNMutableWidgetArray * result = [[[self alloc] initWithWidgets:firstObj, args] self];
-#pragma clang diagnostic pop
-    va_end(args);
-
-
-    return result;
+    va_list argp;
+    va_start(argp, firstObj);
+    
+    do {
+        [array addObject:arg];
+    } while ((arg = va_arg(argp, id)));
+    
+    va_end(argp);
+    
+    return [[self alloc] initWithArray:array];
 }
 
 + (NNMutableWidgetArray *)strongArrayWithArray:(NSArray *)array;
 {
-    return [[[self alloc] initWithArray:array] self];
+    return [[self alloc] initWithArray:array];
 }
 
 + (id)arrayWithContentsOfFile:(NSString *)path;
 {
-    return [[[self alloc] initWithContentsOfFile:path] self];
+    return [[self alloc] initWithContentsOfFile:path];
 }
 
 + (id)arrayWithContentsOfURL:(NSURL *)url;
 {
-    return [[[self alloc] initWithContentsOfURL:url] self];
+    return [[self alloc] initWithContentsOfURL:url];
 }
 
 // Custom initialization
 
-- (id)initWithWidgets:(NNWidget const * [])widgets count:(NSUInteger)cnt;
+- (id)initWithWidgets:(NSWidget const * [])widgets count:(NSUInteger)cnt;
 {
     return [self initWithObjects:widgets count:cnt];
 }
 
-- (id)initWithWidgets:(NNWidget *)firstObj, ...;
+- (id)initWithWidgets:(NSWidget *)firstObj, ...;
 {
-    va_list args;
-    va_start(args, firstObj);
-    // TRUST ME, I'M A PROFESSIONAL
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsentinel"
-    id result = [self initWithObjects:firstObj, args];
-#pragma clang diagnostic pop
-    va_end(args);
+    self = [super init];
+    if (!self) return nil;
+    
+    self->_secretInternalMutableArray = [[NSMutableArray alloc] init];
+    id arg = firstObj;
+    
+    va_list argp;
+    va_start(argp, firstObj);
+    
+    do {
+        [self->_secretInternalMutableArray addObject:arg];
+    } while ((arg = va_arg(argp, id)));
+    
+    va_end(argp);
+    
+    [[self class] nnCheckCollection:self->_secretInternalMutableArray];
 
-    return result;
+    return self;
 }
 
 // Initializer overrides
@@ -124,14 +133,18 @@
     self = [super init];
     if (!self) return nil;
 
-    va_list args;
-    va_start(args, firstObj);
-    // TRUST ME, I'M A PROFESSIONAL
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsentinel"
-    self->_secretInternalMutableArray = [[NSMutableArray alloc] initWithObjects:firstObj, args];
-#pragma clang diagnostic pop
-    va_end(args);
+    self->_secretInternalMutableArray = [[NSMutableArray alloc] init];
+    id arg = firstObj;
+    
+    va_list argp;
+    va_start(argp, firstObj);
+
+    do {
+        [self->_secretInternalMutableArray addObject:arg];
+    } while ((arg = va_arg(argp, id)));
+    
+    va_end(argp);
+
     [[self class] nnCheckCollection:self->_secretInternalMutableArray];
 
     return self;
@@ -169,12 +182,5 @@
 
     return self;
 }
-
-// TODO: support manual memory management
-// - (void)dealloc;
-// {
-//     [self->_secretInternalMutableArray self];
-//     [super dealloc];
-// }
 
 @end

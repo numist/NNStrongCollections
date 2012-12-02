@@ -90,17 +90,25 @@ task :build => [:lint] do
   FileUtils.mkdir_p(BuildIntermediateDirectory)
 
   header = CollectionParser.fileHeader+"\n#import <Foundation/Foundation.h>\n"
+  interfaces = ""
+  
   implementation = CollectionParser.fileHeader+"\n#import <Foundation/Foundation.h>\n#include <stdarg.h>\n"
-  template = "\n"+IO.read('src/template.h')
+  implementations = ""
 
   CollectionParser.types.each do |x|
     # header
-    header += "\n"+template.gsub(/__NNMacroDefinitionForStrongType__/, CollectionParser.new(x).macroHeader).gsub(/__StrongType__/, x)
-
-    #implementation
-    implementation += "\n"+template.gsub(/__NNMacroDefinitionForStrongType__/, CollectionParser.new(x).macroHeader+CollectionParser.new(x).macroImplementation).gsub(/__StrongType__/, x)
-
+    interfaces += CollectionParser.new(x).macroHeader
   end
+
+  implementations = interfaces
+  CollectionParser.types.each do |x|
+    #implementation
+    implementations += CollectionParser.new(x).macroImplementation
+  end
+
+  template = "\n"+IO.read('src/template.h')
+  header += template.gsub(/__NNMacroDefinition__/, interfaces)
+  implementation += template.gsub(/__NNMacroDefinition__/, implementations)
 
   filename = "build/NNStrongCollections.h"
   puts "generating #{filename}"

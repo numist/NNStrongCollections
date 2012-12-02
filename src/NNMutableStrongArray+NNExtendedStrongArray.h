@@ -5,7 +5,7 @@
 /**
  Returns a new array that is a copy of the receiving array with a given widget added to the end.
 
-     - (NNMutableWidgetArray *)strongArrayByAddingWidget:(NNWidget *)someWidget
+     - (NNMutableWidgetArray *)strongArrayByAddingWidget:(NSWidget *)someWidget
 
  @param someWidget An widget.
 
@@ -14,7 +14,7 @@
  @see NSArray#arrayByAddingObject:
  @see NNMutableWidgetArray#addWidget:
  */
-- (NNMutableWidgetArray *)strongArrayByAddingWidget:(NNWidget *)someWidget;
+- (NNMutableWidgetArray *)strongArrayByAddingWidget:(NSWidget *)someWidget;
 
 /**
  Returns a new array that is a copy of the receiving array with the widgets contained in another array added to the end.
@@ -33,7 +33,7 @@
 /**
  Returns a Boolean value that indicates whether a given widget is present in the array.
 
-     - (BOOL)containsWidget:(NNWidget *)someWidget
+     - (BOOL)containsWidget:(NSWidget *)someWidget
 
  @param someWidget An widget.
 
@@ -43,12 +43,12 @@
  @see indexOfWidget:
  @see indexOfWidgetIdenticalTo:
  */
-- (BOOL)containsWidget:(NNWidget *)someWidget;
+- (BOOL)containsWidget:(NSWidget *)someWidget;
 
 /**
  Returns the first widget contained in the receiving array that’s equal to an widget in another given array.
 
-     - (NNWidget *)firstWidgetCommonWithArray:(NSArray *)otherArray
+     - (NSWidget *)firstWidgetCommonWithArray:(NSArray *)otherArray
 
  @param otherArray An array.
 
@@ -57,7 +57,7 @@
  @see NSArray#firstObjectCommonWithArray:
  @see containsWidget:
  */
-- (NNWidget *)firstWidgetCommonWithArray:(NSArray *)otherArray;
+- (NSWidget *)firstWidgetCommonWithArray:(NSArray *)otherArray;
 
 /**
  Copies the widgets contained in the array that fall within the specified range to aBuffer.
@@ -75,7 +75,7 @@
 /**
  Returns the lowest index whose corresponding array value is equal to a given widget.
 
-     - (NSUInteger)indexOfWidget:(NNWidget *)someWidget
+     - (NSUInteger)indexOfWidget:(NSWidget *)someWidget
 
  @param someWidget An widget.
 
@@ -85,12 +85,12 @@
  @see containsWidget:
  @see indexOfWidgetIdenticalTo:
  */
-- (NSUInteger)indexOfWidget:(NNWidget *)someWidget;
+- (NSUInteger)indexOfWidget:(NSWidget *)someWidget;
 
 /**
  Returns the lowest index within a specified range whose corresponding array value is equal to a given widget.
 
-     - (NSUInteger)indexOfWidget:(NNWidget *)someWidget inRange:(NSRange)range
+     - (NSUInteger)indexOfWidget:(NSWidget *)someWidget inRange:(NSRange)range
 
  @param someWidget An widget.
  @param range The range of indexes in the array within which to search for someWidget.
@@ -101,12 +101,12 @@
  @see containsWidget:
  @see indexOfWidgetIdenticalTo:inRange:
  */
-- (NSUInteger)indexOfWidget:(NNWidget *)someWidget inRange:(NSRange)range;
+- (NSUInteger)indexOfWidget:(NSWidget *)someWidget inRange:(NSRange)range;
 
 /**
  Returns the lowest index whose corresponding array value is identical to a given widget.
 
-     - (NSUInteger)indexOfWidgetIdenticalTo:(NNWidget *)someWidget
+     - (NSUInteger)indexOfWidgetIdenticalTo:(NSWidget *)someWidget
 
  @param someWidget An widget.
 
@@ -116,12 +116,12 @@
  @see containsWidget:
  @see indexOfWidget:
  */
-- (NSUInteger)indexOfWidgetIdenticalTo:(NNWidget *)someWidget;
+- (NSUInteger)indexOfWidgetIdenticalTo:(NSWidget *)someWidget;
 
 /**
  Returns the lowest index within a specified range whose corresponding array value is equal to a given widget .
 
-     - (NSUInteger)indexOfWidgetIdenticalTo:(NNWidget *)someWidget inRange:(NSRange)range
+     - (NSUInteger)indexOfWidgetIdenticalTo:(NSWidget *)someWidget inRange:(NSRange)range
 
  @param someWidget An widget.
  @param range The range of indexes in the array within which to search for someWidget.
@@ -132,19 +132,19 @@
  @see containsWidget:
  @see indexOfWidget:inRange:
  */
-- (NSUInteger)indexOfWidgetIdenticalTo:(NNWidget *)someWidget inRange:(NSRange)range;
+- (NSUInteger)indexOfWidgetIdenticalTo:(NSWidget *)someWidget inRange:(NSRange)range;
 
 /**
  Returns the widget in the array with the highest index value.
 
-     - (NNWidget *)lastWidget
+     - (NSWidget *)lastWidget
 
  @return The widget in the array with the highest index value. If the array is empty, returns nil.
 
  @see NSArray#lastObject
  @see NNMutableWidgetArray#removeLastWidget
  */
-- (NNWidget *)lastWidget;
+- (NSWidget *)lastWidget;
 
 /**
  Returns an enumerator object that lets you access each widget in the array.
@@ -185,7 +185,7 @@
 /**
  Sends the aSelector message to each widget in the array, starting with the first widget and continuing through the array to the last widget.
 
-     - (void)makeWidgetsPerformSelector:(SEL)aSelector withWidget:(NNWidget *)argument
+     - (void)makeWidgetsPerformSelector:(SEL)aSelector withWidget:(NSWidget *)argument
 
  @param aSelector A selector that identifies the message to send to the widgets in the array. The method must take a single argument of type id, and must not have the side effect of modifying the receiving array.
  @param anObject The object to send as the argument to each invocation of the aSelector method.
@@ -210,7 +210,7 @@
 /**
  Returns the widget at the specified index.
 
-     - (NNWidget *)widgetAtIndexedSubscript:(NSUInteger)idx
+     - (NSWidget *)widgetAtIndexedSubscript:(NSUInteger)idx
 
  @param idx An index within the bounds of the array.
 
@@ -219,12 +219,12 @@
  @see NSArray#objectAtIndexedSubscript:
  @see widgetsAtIndexes:
  */
-- (NNWidget *)widgetAtIndexedSubscript:(NSUInteger)idx;
+- (NSWidget *)widgetAtIndexedSubscript:(NSUInteger)idx;
 
 /**
  Executes a given block using each widget in the array, starting with the first widget and continuing through the array to the last widget.
 
-     - (void)enumerateWidgetsUsingBlock:(void (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))block
+     - (void)enumerateWidgetsUsingBlock:(void (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))block
 
  @param block The block to apply to elements in the array.
   @param someWidget The element in the array.
@@ -236,12 +236,12 @@
  @see makeWidgetsPerformSelector:
  @see makeWidgetsPerformSelector:withObject:
  */
-- (void)enumerateWidgetsUsingBlock:(void (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateWidgetsUsingBlock:(void (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))block;
 
 /**
  Executes a given block using each widget in the array.
 
-     - (void)enumerateWidgetsWithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))block
+     - (void)enumerateWidgetsWithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))block
 
  @param opts A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
  @param block The block to apply to elements in the array.
@@ -254,12 +254,12 @@
  @see makeWidgetsPerformSelector:
  @see makeWidgetsPerformSelector:withObject:
  */
-- (void)enumerateWidgetsWithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateWidgetsWithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))block;
 
 /**
  Executes a given block using the widgets in the array at the specified indexes.
 
-     - (void)enumerateWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts usingBlock:(void (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))block
+     - (void)enumerateWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts usingBlock:(void (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))block
 
  @param indexSet The indexes of the widgets over which to enumerate.
  @param opts A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
@@ -273,12 +273,12 @@
  @see makeWidgetsPerformSelector:
  @see makeWidgetsPerformSelector:withObject:
  */
-- (void)enumerateWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts usingBlock:(void (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts usingBlock:(void (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))block;
 
 /**
  Returns the index of the first widget in the array that passes a test in a given Block.
 
-     - (NSUInteger)indexOfWidgetPassingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
+     - (NSUInteger)indexOfWidgetPassingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
 
  @param predicate The block to apply to elements in the array.
   The Block returns a Boolean value that indicates whether someWidget passed the test.
@@ -290,12 +290,12 @@
 
  @see NSArray#indexOfObjectPassingTest:
  */
-- (NSUInteger)indexOfWidgetPassingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
+- (NSUInteger)indexOfWidgetPassingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 
 /**
  Returns the index of an widget in the array that passes a test in a given Block for a given set of enumeration options.
 
-     - (NSUInteger)indexOfWidgetWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
+     - (NSUInteger)indexOfWidgetWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
 
  @param opts A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
  @param predicate The block to apply to elements in the array.
@@ -308,12 +308,12 @@
 
  @see NSArray#indexOfObjectWithOptions:passingTest:
  */
-- (NSUInteger)indexOfWidgetWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
+- (NSUInteger)indexOfWidgetWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 
 /**
  Returns the index, from a given set of indexes, of the first widget in the array that passes a test in a given Block for a given set of enumeration options.
 
-     - (NSUInteger)indexOfWidgetAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
+     - (NSUInteger)indexOfWidgetAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
 
  @param indexSet The indexes of the widgets over which to enumerate.
  @param opts A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
@@ -327,12 +327,12 @@
 
  @see NSArray#indexOfObjectAtIndexes:options:passingTest:
  */
-- (NSUInteger)indexOfWidgetAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
+- (NSUInteger)indexOfWidgetAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 
 /**
  Returns the indexes of widgets in the array that pass a test in a given Block.
 
-     - (NSIndexSet *)indexesOfWidgetsPassingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
+     - (NSIndexSet *)indexesOfWidgetsPassingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
 
  @param predicate The block to apply to elements in the array.
   The Block returns a Boolean value that indicates whether someWidget passed the test.
@@ -344,12 +344,12 @@
 
  @see NSArray#indexesOfObjectsPassingTest:
  */
-- (NSIndexSet *)indexesOfWidgetsPassingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
+- (NSIndexSet *)indexesOfWidgetsPassingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 
 /**
  Returns the indexes of widgets in the array that pass a test in a given Block for a given set of enumeration options.
 
-     - (NSIndexSet *)indexesOfWidgetsWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
+     - (NSIndexSet *)indexesOfWidgetsWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
 
  @param opts A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
  @param predicate The block to apply to elements in the array.
@@ -362,12 +362,12 @@
 
  @see NSArray indexesOfObjectsWithOptions:passingTest:
  */
-- (NSIndexSet *)indexesOfWidgetsWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
+- (NSIndexSet *)indexesOfWidgetsWithOptions:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 
 /**
  Returns the indexes, from a given set of indexes, of widgets in the array that pass a test in a given Block for a given set of enumeration options.
 
-     - (NSIndexSet *)indexesOfWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
+     - (NSIndexSet *)indexesOfWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate
 
  @param indexSet The indexes of the widgets over which to enumerate.
  @param opts A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
@@ -381,12 +381,12 @@
 
  @see NSArray#indexesOfObjectsAtIndexes:passingTest:
  */
-- (NSIndexSet *)indexesOfWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NNWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
+- (NSIndexSet *)indexesOfWidgetsAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts passingTest:(BOOL (^)(NSWidget * someWidget, NSUInteger idx, BOOL *stop))predicate;
 
 /**
  Returns the index, within a specified range, of an widget compared with elements in the array using a given NSComparator block.
 
-     - (NSUInteger)indexOfWidget:(NNWidget *)someWidget inSortedRange:(NSRange)r options:(NSBinarySearchingOptions)opts usingComparator:(NSComparator)cmp
+     - (NSUInteger)indexOfWidget:(NSWidget *)someWidget inSortedRange:(NSRange)r options:(NSBinarySearchingOptions)opts usingComparator:(NSComparator)cmp
 
  @param obj  An object for which to search in the array.
  @param r The range within the array to search for obj.
@@ -407,6 +407,6 @@
 
  @see NSArray#indexOfObject:inSortedRange:options:usingComparator:
  */
-- (NSUInteger)indexOfWidget:(NNWidget *)someWidget inSortedRange:(NSRange)r options:(NSBinarySearchingOptions)opts usingComparator:(NSComparator)cmp;
+- (NSUInteger)indexOfWidget:(NSWidget *)someWidget inSortedRange:(NSRange)r options:(NSBinarySearchingOptions)opts usingComparator:(NSComparator)cmp;
 
 @end

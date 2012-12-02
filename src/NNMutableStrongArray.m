@@ -20,12 +20,12 @@
 
 @implementation NNMutableWidgetArray
 
-- (void)addWidget:(NNWidget *)someWidget;
+- (void)addWidget:(NSWidget *)someWidget;
 {
     [self addObject:someWidget];
 }
 
-- (void)insertWidget:(NNWidget *)someWidget atIndex:(NSUInteger)index;
+- (void)insertWidget:(NSWidget *)someWidget atIndex:(NSUInteger)index;
 {
     [self insertObject:someWidget atIndex:index];
 }
@@ -40,7 +40,7 @@
     [self removeObjectAtIndex:index];
 }
 
-- (void)replaceWidgetAtIndex:(NSUInteger)index withWidget:(NNWidget *)someWidget;
+- (void)replaceWidgetAtIndex:(NSUInteger)index withWidget:(NSWidget *)someWidget;
 {
     [self replaceObjectAtIndex:index withObject:someWidget];
 }
@@ -48,9 +48,9 @@
 // TODO: Consider making this a static, uniquely-named C function for faster calls
 + (void)nnCheckObject:(id)obj;
 {
-    if (![obj isKindOfClass:[NNWidget class]]) {
+    if (![obj isKindOfClass:[NSWidget class]]) {
         @throw [NSException exceptionWithName:@"NNMutableWidgetArrayInvalidTypeException"
-                                       reason:[NSString stringWithFormat:@"Collection parameter to %@ contained objects that were not instances of NNWidget", NSStringFromSelector(_cmd)]
+                                       reason:[NSString stringWithFormat:@"Parameter to %@ is the wrong type: %@", NSStringFromClass(self), obj]
                                      userInfo:nil];
     }
 }
