@@ -45,16 +45,6 @@
     return [[self alloc] initWithArray:array];
 }
 
-+ (id)arrayWithContentsOfFile:(NSString *)path;
-{
-    return [[self alloc] initWithContentsOfFile:path];
-}
-
-+ (id)arrayWithContentsOfURL:(NSURL *)url;
-{
-    return [[self alloc] initWithContentsOfURL:url];
-}
-
 // Custom initialization
 
 - (id)initWithWidgets:(NSWidget const * [])widgets count:(NSUInteger)cnt;
